@@ -1,1 +1,7 @@
-<router-outlet></router-outlet>
+<app-sidebar [menus]="menusBackOffice"></app-sidebar>
+<div class="content-dashboard">
+    <app-header></app-header>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</div>

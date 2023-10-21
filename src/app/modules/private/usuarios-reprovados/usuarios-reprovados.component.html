@@ -1,0 +1,14 @@
+<div class="d-flex align-items-center justify-content-between mb-3">
+    <h1>Usuários reprovados</h1>
+    <button class="btn btn-export"><i class='bx bxs-file-export' ></i> Exportar dados</button>
+</div>
+
+<div class="content-usuarios">
+    <app-table 
+        [gridData]="(usuariosCadastrados$ | async)" 
+        [colData]="colData"
+        [actions]="true"
+        (editBtn)="editGetEvent($event)"
+        (deleteBtn)="deleteGetEvent($event)">
+    </app-table>
+</div>

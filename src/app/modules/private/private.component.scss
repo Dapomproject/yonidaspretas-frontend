@@ -1,0 +1,18 @@
+.content-dashboard {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+
+    .container {
+        padding: 80px 0px 10px 40px;
+        position: relative;
+    }
+}
+
+/* ============= MOBILE =================*/
+@media (max-width: 768px) {
+    .content-dashboard {
+        .container {
+            padding: 80px 15px 10px 15px;
+        }
+    }
+}

@@ -1,0 +1,120 @@
+<app-header></app-header>
+
+<section class="section-freelas">
+    <div class="container">
+
+        <h1>Perfil
+            <!--a routerLink="/register/registro-freelancer/{{contentArray[0]?.ID}}" class="btn"><img src="assets/icons/edit.svg"></a-->
+        </h1>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-profile">
+                    <div class="profile-header">
+                        <div class="left-infos">
+                            <a href="javascript:void(0);" class="box-avatar">
+                                <img
+                                    src="{{freelancer[0]?.foto !== 'undefined' && contentArray[0]?.foto !== null ? contentArray[0]?.foto : 'assets/imgs/user-empty.svg'}}">
+                            </a>
+                            <div class="wrap-texts">
+                                <h2>{{contentArray[0]?.nomeSocial}}</h2>
+                                <p>{{contentArray[0]?.profissao}}</p>
+                                <p>Bairro: {{contentArray[0]?.endereco.bairro}}</p>
+                                <p>{{contentArray[0]?.endereco.cidade}}, {{contentArray[0]?.endereco.uf}}- Brasil</p>
+                                <p>{{contentArray[0]?.email}}</p>
+                            </div>
+                        </div>
+
+                        <div class="flex-portifolio">
+                            <a class="nav-link nav-link-whats"
+                                href="https://api.whatsapp.com/send?l=pt&phone=55{{contentArray[0]?.celular}}"
+                                target="_blank"><i class='bx bxl-whatsapp'></i> Entre em
+                                contato</a>
+
+                            <a class="nav-link" href="{{contentArray[0]?.linkInstagram}}" target="_blank"><i
+                                    class='bx bxl-instagram'></i></a>
+                            <a class="nav-link" href="{{contentArray[0]?.linkFacebook}}" target="_blank"><i
+                                    class='bx bxl-facebook'></i></a>
+                            <a class="nav-link" href="{{contentArray[0]?.linkLinkedin}}" target="_blank"><i
+                                    class='bx bxl-linkedin'></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-content">
+                    <h2>{{contentArray[0]?.nomeNegocio}}</h2>
+                    <h3>Sobre mim</h3>
+                    <p>{{contentArray[0]?.descricaoNegocio}}</p>
+
+                </div>
+
+                <div class="card card-content products">
+                    <h3>Principais produtos/serviços</h3>
+                    <div class="row">
+                        <div class="col-lg-2 mb-4">
+                            <div class="card">
+                                <div class="box-image">
+                                    <img src="{{contentArray[0]?.produtosServicos.imagem1}}">
+                                </div>
+                                <h4>{{contentArray[0]?.produtosServicos.titulo1}}</h4>
+                                <p>{{contentArray[0]?.produtosServicos.descricao1}}</p>
+                                <p class="price">{{contentArray[0]?.produtosServicos.valor1}}</p>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-2 mb-4">
+                            <div class="card">
+                                <div class="box-image">
+                                    <img src="{{contentArray[0]?.produtosServicos.imagem2}}">
+                                </div>
+                                <h4>{{contentArray[0]?.produtosServicos.titulo2}}</h4>
+                                <p>{{contentArray[0]?.produtosServicos.descricao2}}</p>
+                                <p class="price">{{contentArray[0]?.produtosServicos.valor2}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 mb-4">
+                            <div class="card">
+                                <div class="box-image">
+                                    <img src="{{contentArray[0]?.produtosServicos.imagem3}}">
+                                </div>
+                                <h4>{{contentArray[0]?.produtosServicos.titulo3}}</h4>
+                                <p>{{contentArray[0]?.produtosServicos.descricao3}}</p>
+                                <p class="price">{{contentArray[0]?.produtosServicos.valor3}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="card">
+                                <div class="box-image">
+                                    <img src="{{contentArray[0]?.produtosServicos.imagem4}}">
+                                </div>
+                                <h4>{{contentArray[0]?.produtosServicos.titulo4}}</h4>
+                                <p>{{contentArray[0]?.produtosServicos.descricao4}}</p>
+                                <p class="price">{{contentArray[0]?.produtosServicos.valor4}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="card">
+                                <div class="box-image">
+                                    <img src="{{contentArray[0]?.produtosServicos.imagem5}}">
+                                </div>
+                                <h4>{{contentArray[0]?.produtosServicos.titulo5}}</h4>
+                                <p>{{contentArray[0]?.produtosServicos.descricao5}}</p>
+                                <p class="price">{{contentArray[0]?.produtosServicos.valor5}}</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="card">
+                                <div class="box-image">
+                                    <img src="{{contentArray[0]?.produtosServicos.imagem6}}">
+                                </div>
+                                <h4>{{contentArray[0]?.produtosServicos.titulo6}}</h4>
+                                <p>{{contentArray[0]?.produtosServicos.descricao6}}</p>
+                                <p class="price">{{contentArray[0]?.produtosServicos.valor6}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

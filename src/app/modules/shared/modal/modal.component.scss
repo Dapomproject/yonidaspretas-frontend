@@ -1,0 +1,28 @@
+.container-modal{
+    .modal-header{
+        color: #311e20c0;
+        background-color: #e6b58b23;
+        .bx-x{
+            font-size: 18px;
+            color: #311e208a;
+            cursor: pointer;
+        }
+    }
+
+    .modal-body{
+        .list-group {
+            width: 95%;
+            margin: 0 auto;
+            .list-group-item{
+                border-top: none;
+                border-left: none;
+                border-right: none;
+                color: #311e20c0;
+                &:last-child{
+                    border: none;
+                }
+            }
+            
+        }
+    }
+}

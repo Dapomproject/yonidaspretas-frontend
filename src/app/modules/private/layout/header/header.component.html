@@ -1,0 +1,46 @@
+<nav class="navbar">
+    <div class="navbar-left">
+        <button class="btn" id="btn-toggle" (click)="toggleSidebar()">
+            <i class='bx bx-menu' ></i>
+        </button>
+        <div class="box-logo">
+            <img src="assets/imgs/yoni_das_pretas_logo_branco.png">
+        </div>
+    </div>
+
+    <div class="navbar-right">
+        
+        <!--div class="wrap-notifications">
+            <span>3</span>
+            <i class='bx bx-bell dropdown-toggle'></i>
+        </div-->
+        
+        <div class="profile-menu" dropdown>
+            <div class="user" dropdownToggle aria-controls="dropdown-animated">
+                <div class="box-image-user">
+                    <img src="assets/imgs/user-empty.svg">
+                </div>
+
+                <span></span>
+                <i class='bx bx-chevron-down bx-sm'></i>
+            </div>
+
+            <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu drop-user" role="menu"
+                aria-labelledby="button-animated">
+                <li class="menuitem">
+                    <p>Ações</p>
+                </li>
+                <li class="menuitem">
+                    <a routerLink="." (click)="logout()">
+                        <i class='bx bx-log-out'></i>
+                        <span>Sair</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    
+</nav>
+
+

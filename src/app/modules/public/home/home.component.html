@@ -1,1 +1,89 @@
-<p>home works!</p>
+<app-header></app-header>
+
+<section class="section-freelas">
+    <div class="container">
+        <h1>Vitrine</h1>
+
+        <div class="bg-filter">
+            <div class="col-filter">
+                <input #searchEstado  [(ngModel)]="selectedEstado" [typeahead]="estados"  (typeaheadOnSelect)="onSelect($event)"
+                typeaheadOptionField="nome" [typeaheadMinLength]="0" placeholder="Estado" class="form-control">
+                <i *ngIf="selectedEstado == '' || selectedEstado == undefined" class='bx bx-chevron-down' (click)="searchEstado.focus()"></i>
+                <i *ngIf="selectedEstado !== '' && selectedEstado !== undefined" class='bx bx-x' (click)="selectedEstado = ''"></i>
+            </div>
+            <div class="col-filter">
+                <input #searchCidade [(ngModel)]="selectedCidade" [typeahead]="cidades" 
+                typeaheadOptionField="nome" [typeaheadMinLength]="0" placeholder="Cidade" class="form-control">
+                <i *ngIf="selectedCidade == '' || selectedCidade == undefined" class='bx bx-chevron-down' (click)="searchCidade.focus()"></i>
+                <i *ngIf="selectedCidade !== '' && selectedCidade !== undefined" class='bx bx-x' (click)="selectedCidade = ''"></i>
+            </div>
+            <div class="col-filter">
+                <input #searchFormato [(ngModel)]="selectedFormato" [typeahead]="formato" 
+                typeaheadOptionField="name" [typeaheadMinLength]="0" placeholder="Formato" class="form-control">
+                <i *ngIf="selectedFormato == '' || selectedFormato == undefined" class='bx bx-chevron-down' (click)="searchFormato.focus()"></i>
+                <i *ngIf="selectedFormato !== '' && selectedFormato !== undefined" class='bx bx-x' (click)="selectedFormato = ''"></i>
+            </div>
+            <div class="col-filter">
+                <input #searchProfissao [(ngModel)]="selectedProfissao" [typeahead]="profissao" 
+                typeaheadOptionField="name" [typeaheadMinLength]="0" placeholder="Profissão" class="form-control">
+                <i *ngIf="selectedProfissao == '' || selectedProfissao == undefined" class='bx bx-chevron-down' (click)="searchProfissao.focus()"></i>
+                <i *ngIf="selectedProfissao !== '' && selectedProfissao !== undefined" class='bx bx-x' (click)="selectedProfissao = ''"></i>
+            </div>
+            <div class="col-filter">
+                <button class="btn">Filtrar</button>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div *ngIf="messageEmpty !== ''" class="col-lg-12" [innerHtml]="messageEmpty"></div>
+            <ng-container *ngFor="let f of contentArray">
+
+                <div class="col-lg-6">
+                    <div class="card card-profile">
+                        <div class="profile-header">
+                            <a routerLink="vitrine/{{f.nomeSocial | replace}}" class="box-avatar">
+                                <img src="{{f.foto !== 'undefined' && f.foto !== null ? f.foto : 'assets/imgs/user-empty.svg'}}">
+                            </a>
+                            <div class="wrap-texts">
+                                <a class="nav-link" routerLink="vitrine/{{f.nomeSocial | replace}}">
+                                    <h2>{{f.nomeSocial}}</h2>
+                                </a>
+                                <p>{{f.profissao}}</p>
+                                <p>São Paulo, SP - Brasil</p>
+                                <p>{{f.email}}</p>
+                                <div class="socials">
+                                    <a class="nav-link" href="#">
+                                        <i class='bx bxl-whatsapp' ></i>
+                                    </a>
+                                    <a class="nav-link" href="#">
+                                        <i class='bx bxl-instagram' ></i>
+                                    </a>
+                                    <a class="nav-link" href="#">
+                                        <i class='bx bxl-facebook'></i>
+                                    </a>
+                                    <a class="nav-link" href="#">
+                                        <i class='bx bxl-linkedin'></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-bottom">
+                            <h3>Sobre mim</h3>
+                            <p>{{f.descricaoNegocio}}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </ng-container>
+
+           <button class="btn btn-show-more" (click)="showMore()">Exibir mais</button>
+        </div>
+
+        <div class="wrap-loading" *ngIf="loading">
+            <img src="assets/icons/loading.gif">
+            <p>Carregando dados...</p>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

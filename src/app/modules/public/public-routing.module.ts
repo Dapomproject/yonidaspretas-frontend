@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PublicComponent } from './public.component';
 import { HomeComponent } from './home/home.component';
+import { HomeDetalhesComponent } from './home-detalhes/home-detalhes.component';
 
 const routes: Routes = [
   {
     path: '', component: PublicComponent, children: [
      { path: '', component: HomeComponent },
+     { path: 'vitrine/:nome', component: HomeDetalhesComponent },
      { path: '', pathMatch: 'full', redirectTo: '' },
     ]
   }

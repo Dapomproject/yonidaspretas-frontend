@@ -1,0 +1,31 @@
+<nav class="navbar" [ngClass]="{'shorten': scrollPosition > 60}">
+    <div class="container">
+        <a href="" class="navbar-left">
+            <img src="assets/imgs/yoni_das_pretas_logo_marrom.png">
+        </a>
+    
+        <div class="navbar-right">
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">
+                    <a class="nav-link" routerLink="/projetos-vagas">Inicio</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-link" routerLink="/projetos-vagas">Criar conta</a>
+                </li>
+                <li class="list-group-item">
+                    <a class="nav-link" routerLink="/projetos-vagas">Entrar</a>
+                </li>
+            </ul>
+            
+            <!--div *ngIf="(isLogged$ | async)" class="btn-group" dropdown>
+                <img class="dropdown-toggle" dropdownToggle aria-controls="dropdown-basic" src="assets/icons/user.svg">
+    
+                <ul id="dropdown-basic-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                    <li role="menuitem">
+                        <a class="dropdown-item" href="javascript:void(0);" (click)="logout();">Sair</a>
+                    </li>
+                </ul>
+            </div-->
+        </div>
+    </div>
+</nav>

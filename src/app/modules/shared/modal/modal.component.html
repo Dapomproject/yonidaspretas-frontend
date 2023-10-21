@@ -1,0 +1,48 @@
+<div class="container-modal">
+    <div class="modal-header">
+        {{data.titleModal}}
+        <i class='bx bx-x' (click)="closeModal()"></i>
+    </div>
+    <div class="modal-body">
+        <ng-container *ngIf="data.modalType === 'RESPOSTAS'">
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Eu acho que gostaria de usar este sistema com frequência</div>
+                        R: Acredito que sim
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Eu acho este sistema desnecessariamente complexo</div>
+                        R: Não acho
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Eu achei o sistema fácil de usar</div>
+                        R: Sim
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Eu acho que o sistema apresenta muitas inconsistências</div>
+                        R: Não percebi durante o tempo que usei
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Eu semti-me confiante ao utilizar o sistema</div>
+                        R: Sim
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Eu achei que o sistema era complicado de usar</div>
+                        R: Não
+                    </div>
+                </li>
+            </ol>
+        </ng-container>
+    </div>
+</div>
