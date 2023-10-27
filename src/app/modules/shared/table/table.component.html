@@ -9,16 +9,22 @@
             </thead>
             <tbody>
                 <tr *ngFor="let record of gridData; let i = index">
-
                     <td *ngFor="let key of colData">
                         <img *ngIf="key.field === 'nomeSocial'" class="avatar rounded-circle" src="{{record.avatar}}">
                         <span>{{ record[key.field]}}</span>
                     </td>
-                    <td *ngIf="actions">
+                    <td *ngIf="actions && typeTable === 'cadastrados'">
                         <i class='bx bx-windows' tooltip="Ver respostas" placement="top" delay="300"></i>
                         <i class='bx bx-paperclip bx-rotate-270' tooltip="Baixar anexo" placement="top" delay="300"></i>
                         <i class='bx bx-user-check' tooltip="Aprovar" placement="top" delay="300"></i>
                         <i class='bx bx-user-x' tooltip="Reprovar" placement="top" delay="300"></i>
+                    </td>
+                    <td *ngIf="actions && typeTable === 'aprovados'">
+                        <i class='bx bx-user-pin' tooltip="Ver perfil" placement="top" delay="300" (click)="detailsBtnEvent($event, i, record)"></i>
+                        <i class='bx bx-trash'  tooltip="Excluir" placement="top" delay="300" (click)="deleteBtnEvent($event, i, record)"></i>
+                    </td>
+                    <td *ngIf="actions && typeTable === 'reprovados'">
+                        <i class='bx bx-trash'  tooltip="Excluir" placement="top" delay="300" (click)="deleteBtnEvent($event, i, record)"></i>
                     </td>
                 </tr>
             </tbody>

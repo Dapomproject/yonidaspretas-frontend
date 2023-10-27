@@ -60,11 +60,24 @@ table.table{
                         color: #379c59;
                     }
                 }
+                &.bx-user-pin{
+                    font-size: 22px;
+                    position: relative;
+                    top: 2px;
+                    &:hover{
+                        color: #5178cc;
+                    }
+                }
                 &.bx-user-x{
                     font-size: 25px;
                     position: relative;
                     top: 2px;
                     margin-right: 0;
+                    &:hover{
+                        color: #ce445b;
+                    }
+                }
+                &.bx-trash{
                     &:hover{
                         color: #ce445b;
                     }

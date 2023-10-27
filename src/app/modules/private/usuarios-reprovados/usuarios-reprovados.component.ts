@@ -53,6 +53,14 @@ export class UsuariosReprovadosComponent {
   }
 
   deleteGetEvent(event: any): void {
-
+    const initialState = {
+      data: {
+        modalType: 'CONFIRM_DELETE',
+      }
+    };
+    this.bsModalRef = this.modalService.show(
+      ModalComponent,
+      Object.assign({ initialState }, { class: 'modal-confirm-delete' }),
+    );
   }
 }

@@ -48,11 +48,29 @@ export class UsuariosAprovadosComponent {
     );
   }
 
-  editGetEvent(event: any): void {
-
+  detailsGetEvent(event: any): void {
+    console.log(event)
+    const initialState = {
+      data: {
+        modalType: 'PERFIL_USUARIO',
+        dadosPerfil: event.data
+      }
+    };
+    this.bsModalRef = this.modalService.show(
+      ModalComponent,
+      Object.assign({ initialState }, { class: 'modal-aprovados' }),
+    );
   }
 
   deleteGetEvent(event: any): void {
-
+    const initialState = {
+      data: {
+        modalType: 'CONFIRM_DELETE',
+      }
+    };
+    this.bsModalRef = this.modalService.show(
+      ModalComponent,
+      Object.assign({ initialState }, { class: 'modal-confirm-delete' }),
+    );
   }
 }

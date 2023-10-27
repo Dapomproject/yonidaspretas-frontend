@@ -1,5 +1,5 @@
 <div class="container-modal">
-    <div class="modal-header">
+    <div *ngIf="data.titleModal" class="modal-header">
         {{data.titleModal}}
         <i class='bx bx-x' (click)="closeModal()"></i>
     </div>
@@ -43,6 +43,84 @@
                     </div>
                 </li>
             </ol>
+        </ng-container>
+
+        <ng-container *ngIf="data.modalType === 'CONFIRM_DELETE'">
+            <p><i class='bx bx-info-circle'></i> Tem certeza?</p>
+
+            <div class="d-flex align-items-center justify-content-center mt-4 mb-2">
+                <button class="btn btn-nao" (click)="closeModal()">Não</button>
+                <button class="btn btn-sim">Sim</button>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="data.modalType === 'PERFIL_USUARIO'">
+            <div class="header-perfil">
+                <i class='bx bx-x' (click)="closeModal()"></i>
+                <img class="avatar rounded-circle" src="{{data.dadosPerfil.avatar}}">
+                <p class="title">{{data.dadosPerfil.nomeSocial}}</p>
+                <p>{{data.dadosPerfil.email}}</p>
+                <p>Belo Horizonte - MG</p>
+                <p>{{data.dadosPerfil.profissao}}</p>
+                <div class="d-flex align-items-center justify-content-center mt-2 gap-2">
+                    <p class="tag presencial"><i class='bx bx-user-voice'></i> Presencial</p>
+                    <p class="tag distancia"><i class='bx bx-webcam'></i> À distância</p>
+                </div>
+            </div>
+            <hr>
+            <div class="body-perfil">
+                <div class="content-texts">
+                    <p class="subtitle">Resumo</p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                        Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
+                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                    
+                    <p class="subtitle">Serviços</p>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <p>An item</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <p class="price">R$ 600,00</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>A second item</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <p class="price">R$ 350,00</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>A third item</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <p class="price">R$ 1200,00</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>A fourth item</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <p class="price">R$ 700,00</p>
+                        </li>
+                        <li class="list-group-item">
+                            <p>And a fifth one</p>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                            <p class="price">R$ 600,00</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </ng-container>
     </div>
 </div>

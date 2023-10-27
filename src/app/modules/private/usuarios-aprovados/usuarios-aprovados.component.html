@@ -8,7 +8,8 @@
         [gridData]="(usuariosCadastrados$ | async)" 
         [colData]="colData"
         [actions]="true"
-        (editBtn)="editGetEvent($event)"
+        [typeTable]="'aprovados'"
+        (detailsBtn)="detailsGetEvent($event)"
         (deleteBtn)="deleteGetEvent($event)">
     </app-table>
 </div>

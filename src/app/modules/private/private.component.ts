@@ -25,18 +25,6 @@ export class PrivateComponent {
         { name: 'Aprovados', url: '/private/usuarios-aprovados', active: false, },
         { name: 'Reprovados', url: '/private/usuarios-reprovados', active: false, },
       ]
-    },
-    {
-      name: 'Dados Freelancer',
-      iconClass: 'bx bxs-user-badge',
-      active: false,
-      url: '/admin/freelancers',
-    },
-    {
-      name: 'Dados Contratantes',
-      iconClass: 'bx bxs-user-detail',
-      active: false,
-      url: '/admin/contratantes',
     }
   ];
 }

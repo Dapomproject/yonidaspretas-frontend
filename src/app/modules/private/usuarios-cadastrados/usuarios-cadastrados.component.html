@@ -7,6 +7,7 @@
         [gridData]="(usuariosCadastrados$ | async)" 
         [colData]="colData"
         [actions]="true"
+        [typeTable]="'cadastrados'"
         (editBtn)="editGetEvent($event)"
         (deleteBtn)="deleteGetEvent($event)">
     </app-table>
