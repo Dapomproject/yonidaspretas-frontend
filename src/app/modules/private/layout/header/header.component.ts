@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SidebarService } from '../sidebar/services/sidebar.service';
+import { LoginService } from 'src/app/modules/login/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,8 @@ import { SidebarService } from '../sidebar/services/sidebar.service';
 export class HeaderComponent {
 
   constructor(
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private loginService: LoginService
     ) { }
 
   toggleSidebar(): void {
@@ -17,7 +19,7 @@ export class HeaderComponent {
   }
 
   logout(): void {
-   
+   this.loginService.logout();
   }
 
 }

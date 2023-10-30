@@ -5,7 +5,7 @@
             <form [formGroup]="loginForm" class="login-form validate-form" 
                 [ngClass]="!showLoginForm ? 'hide' : 'show'">
                 <div class="logo-top-login">
-                    <a class="link" routerLink="/home">
+                    <a class="link" routerLink="/">
                         <img src="assets/imgs/yoni_das_pretas_logo_marrom.png" alt="logo">
                     </a>
                 </div>
@@ -24,7 +24,9 @@
                     <i class='bx bx-lock bx-sm'></i>
                     <i (click)="showHidPassword()" class="bx bx-sm" [ngClass]="(show == true) ? 'bx-show' : 'bx-hide'"></i>
                 </div>
-    
+                <div class="contact-form-recover">
+                    <a class="nav-link" href="#">Esqueceu a senha?</a>
+                </div>
                 <div class="container-btn mt-3">
                     <span *ngIf="msgErro" class="msg-erro">{{msgErro}}</span>
                     <button type="submit" class="btn" [ngClass]="{'waiting': loading}" (click)="submitLogin()">
@@ -36,3 +38,6 @@
     </div>
 </div>
 
+<!--button type="button" class="btn" [ngClass]="{'waiting': loading}" (click)="submitNewUser()">
+    {{ loading ? 'Registrando...' : 'Registrar' }}
+</button-->

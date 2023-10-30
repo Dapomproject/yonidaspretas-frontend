@@ -22,9 +22,10 @@ export class LoginComponent {
 
   registerForm: UntypedFormGroup = this.fb.group({
     id: [''],
+    nomeCompleto: [''],
     email: ['', [Validators.required, Validators.email]],
     senha: ['', [Validators.required, Validators.minLength(6)]],
-    permission: ['']
+    tipoUsuario: ['']
   });
 
   constructor(
@@ -41,10 +42,12 @@ export class LoginComponent {
       }
     }
   
-    cadastro(): void {
+    submitNewUser(): void {
       this.loading = true;
-  
-      this.registerForm.get('permission')?.patchValue('admin');
+      this.registerForm.get('nomeCompleto')?.patchValue('Administrador')
+      this.registerForm.get('email')?.patchValue('admin@yonidaspretas.com.br')
+      this.registerForm.get('senha')?.patchValue('admin@2023')
+      this.registerForm.get('tipoUsuario')?.patchValue('adm');
   
       if (this.registerForm.valid) {
         this.msgErro = '';
