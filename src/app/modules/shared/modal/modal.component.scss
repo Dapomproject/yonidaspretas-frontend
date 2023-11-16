@@ -168,6 +168,65 @@ hr{
                 }
             }
         }
-    }
-    
+    }  
 }
+
+.form-register{
+    input.form-control{
+        border: 1px solid rgba(49, 30, 32, 0.363);
+        box-shadow: none;
+        height: initial;
+        &:focus, &:active{
+            border-color: #a24337;
+        }
+    }
+    .form-check{
+        .form-check-label{
+            color: rgba(49, 30, 32, 0.7529411765);
+        }
+    }
+    .form-check-input{
+        border-color: rgba(49, 30, 32, 0.7529411765);
+        &:focus, &:active{
+            box-shadow: none;
+            outline: none;
+            border-color: #a24337;
+        }
+        &:checked{
+            background-color: #a24337;
+            border-color: #a24337;
+        }
+    }
+    .container-btn{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        .btn-register{
+            background-color: #a24337;
+            height: 40px;
+            width: 130px;
+        }
+    }
+}
+
+.content-confirm{
+    text-align: center;
+    padding: 30px 0;
+    .bx-x{
+        font-size: 18px;
+        color: #311e208a;
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        top: 8px;
+    }
+    .bxs-check-circle{
+        font-size: 85px;
+        color: #379c59;
+    }
+    p{
+        margin-top: 10px;
+        font-size: 25px;
+        color: rgba(49, 30, 32, 0.7529411765);
+    }
+}   

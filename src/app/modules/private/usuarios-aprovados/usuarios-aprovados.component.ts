@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of } from 'rxjs';
 import { ModalComponent } from '../../shared/modal/modal.component';
+import { PublicService } from '../../public/services/public.service';
 
 const columnData: any = [
   { field: 'nomeSocial', header: 'Cliente' },
@@ -18,21 +19,16 @@ export class UsuariosAprovadosComponent {
   bsModalRef?: BsModalRef;
   gridData: any = [];
   colData = [];
-  usuariosCadastrados$: Observable<any> = of([
-    {avatar: 'assets/imgs/team-1.jpg', nomeSocial: 'John Michael', email: 'john@email.com.br', profissao: 'Arquiteto'},
-    {avatar: 'assets/imgs/team-2.jpg', nomeSocial: 'Alex Smith', email: 'alex_smith@email.com.br', profissao: 'Médico'},
-    {avatar: 'assets/imgs/team-3.jpg', nomeSocial: 'Samantha Ivy', email: 'ivy@email.com.br', profissao: 'Psicóloga'},
-    {avatar: 'assets/imgs/team-1.jpg', nomeSocial: 'John Michael', email: 'john@email.com.br', profissao: 'Arquiteto'},
-    {avatar: 'assets/imgs/team-2.jpg', nomeSocial: 'Alex Smith', email: 'alex_smith@email.com.br', profissao: 'Médico'},
-    {avatar: 'assets/imgs/team-3.jpg', nomeSocial: 'Samantha Ivy', email: 'ivy@email.com.br', profissao: 'Psicóloga'},
-  ]);
+  usuariosAprovados$: Observable<any> = of();
 
   constructor(
     private modalService: BsModalService,
+    private publicService: PublicService
   ) { }
 
   ngOnInit() {
     this.colData = columnData;
+    this.getUsuariosCadastrados();
   }
 
   openDialogRespostas() {
@@ -48,8 +44,11 @@ export class UsuariosAprovadosComponent {
     );
   }
 
+  getUsuariosCadastrados() {
+    this.usuariosAprovados$ = this.publicService.getUsersClient().pipe(map(u => u.filter((c: any) => c.status === 1)));
+  }
+
   detailsGetEvent(event: any): void {
-    console.log(event)
     const initialState = {
       data: {
         modalType: 'PERFIL_USUARIO',

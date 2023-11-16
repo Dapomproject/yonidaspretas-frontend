@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModalComponent } from '../../shared/modal/modal.component';
-import { Observable, of } from 'rxjs';
+import { Observable, filter, map, of } from 'rxjs';
+import { PublicService } from '../../public/services/public.service';
+import { ToastrService } from 'ngx-toastr';
 
 const columnData: any = [
   { field: 'nomeSocial', header: 'Cliente' },
@@ -18,28 +20,25 @@ export class UsuariosCadastradosComponent implements OnInit {
   bsModalRef?: BsModalRef;
   gridData: any = [];
   colData = [];
-  usuariosCadastrados$: Observable<any> = of([
-    {avatar: 'assets/imgs/team-1.jpg', nomeSocial: 'John Michael', email: 'john@email.com.br', profissao: 'Arquiteto'},
-    {avatar: 'assets/imgs/team-2.jpg', nomeSocial: 'Alex Smith', email: 'alex_smith@email.com.br', profissao: 'Médico'},
-    {avatar: 'assets/imgs/team-3.jpg', nomeSocial: 'Samantha Ivy', email: 'ivy@email.com.br', profissao: 'Psicóloga'},
-    {avatar: 'assets/imgs/team-1.jpg', nomeSocial: 'John Michael', email: 'john@email.com.br', profissao: 'Arquiteto'},
-    {avatar: 'assets/imgs/team-2.jpg', nomeSocial: 'Alex Smith', email: 'alex_smith@email.com.br', profissao: 'Médico'},
-    {avatar: 'assets/imgs/team-3.jpg', nomeSocial: 'Samantha Ivy', email: 'ivy@email.com.br', profissao: 'Psicóloga'},
-  ]);
+  usuariosCadastrados$: Observable<any> = of();
 
   constructor(
     private modalService: BsModalService,
+    private publicService: PublicService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.colData = columnData;
+    this.getUsuariosCadastrados();
   }
 
-  openDialogRespostas() {
+  openDialogRespostas(dados: any) {
     const initialState = {
       data: {
         modalType: 'RESPOSTAS',
-        titleModal: 'Respostas do formulário'
+        titleModal: 'Respostas do formulário',
+        dadosResposta: dados
       }
     };
     this.bsModalRef = this.modalService.show(
@@ -48,7 +47,25 @@ export class UsuariosCadastradosComponent implements OnInit {
     );
   }
 
-  editGetEvent(event: any): void {
+  getUsuariosCadastrados() {
+    this.usuariosCadastrados$ = this.publicService.getUsersClient().pipe(map(u => u.filter((c: any) => c.status === 0)));
+  }
+
+  updateGetEvent(event: any): void {
+    const dataUserUpdated = {
+      ...event.data,
+      status: event.status
+    }
+
+    const formData = new FormData();
+    formData.append('formUsersClient', JSON.stringify(dataUserUpdated));
+
+    this.publicService.updateUserClient(event.data.ID, formData).subscribe(res => {
+      this.getUsuariosCadastrados();
+      event.status === 1 ? this.toastr.success('Usuário aprovado com sucesso', '') : this.toastr.success('Usuário reprovado', '')
+    }, (err) => {
+      this.toastr.error('Ocorreu um erro ao executar ação, contate o administrador', '');
+    });
 
   }
 

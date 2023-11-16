@@ -9,37 +9,25 @@
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">Eu acho que gostaria de usar este sistema com frequência</div>
-                        R: Acredito que sim
+                        R: {{dadosRespostas[0]?.res1}}
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">Eu acho este sistema desnecessariamente complexo</div>
-                        R: Não acho
+                        R: {{dadosRespostas[0]?.res2}}
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">Eu achei o sistema fácil de usar</div>
-                        R: Sim
+                        R: {{dadosRespostas[0]?.res3}}
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
                         <div class="fw-bold">Eu acho que o sistema apresenta muitas inconsistências</div>
-                        R: Não percebi durante o tempo que usei
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Eu semti-me confiante ao utilizar o sistema</div>
-                        R: Sim
-                    </div>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <div class="ms-2 me-auto">
-                        <div class="fw-bold">Eu achei que o sistema era complicado de usar</div>
-                        R: Não
+                        R: {{dadosRespostas[0]?.res4}}
                     </div>
                 </li>
             </ol>
@@ -57,10 +45,11 @@
         <ng-container *ngIf="data.modalType === 'PERFIL_USUARIO'">
             <div class="header-perfil">
                 <i class='bx bx-x' (click)="closeModal()"></i>
-                <img class="avatar rounded-circle" src="{{data.dadosPerfil.avatar}}">
+                <img class="avatar rounded-circle" 
+                src="{{data.dadosPerfil.avatar !== 'undefined' ? data.dadosPerfil.avatar : 'assets/imgs/user-empty.svg'}}">
                 <p class="title">{{data.dadosPerfil.nomeSocial}}</p>
                 <p>{{data.dadosPerfil.email}}</p>
-                <p>Belo Horizonte - MG</p>
+                <p>{{data.dadosPerfil.endereco}}</p>
                 <p>{{data.dadosPerfil.profissao}}</p>
                 <div class="d-flex align-items-center justify-content-center mt-2 gap-2">
                     <p class="tag presencial"><i class='bx bx-user-voice'></i> Presencial</p>
@@ -71,10 +60,7 @@
             <div class="body-perfil">
                 <div class="content-texts">
                     <p class="subtitle">Resumo</p>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
-                        when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                    </p>
+                    <p>{{data.dadosPerfil.breveDescricao}}</p>
                     
                     <p class="subtitle">Serviços</p>
                     <ul class="list-group list-group-flush">
@@ -120,6 +106,103 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="data.modalType === 'REGISTER_CLIENT'">
+            <form [formGroup]="regiterClientForm" class="form-register">
+                <div class="form-group mb-3">
+                    <label class="form-check-label mb-2">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard.
+                    </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1" (change)="changeRes1($event)">
+                        <label class="form-check-label" for="inlineRadio1">Opção 1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2" (change)="changeRes1($event)">
+                        <label class="form-check-label" for="inlineRadio2">Opção 2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio3" value="option3" (change)="changeRes1($event)">
+                        <label class="form-check-label" for="inlineRadio3">Opção 3</label>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-check-label mb-2">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard.
+                    </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="option4" (change)="changeRes2($event)">
+                        <label class="form-check-label" for="inlineRadio4">Opção 4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio5" value="option5" (change)="changeRes2($event)">
+                        <label class="form-check-label" for="inlineRadio5">Opção 5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="option6" (change)="changeRes2($event)">
+                        <label class="form-check-label" for="inlineRadio6">Opção 6</label>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-check-label mb-2">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard.
+                    </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio7" value="option7" (change)="changeRes3($event)">
+                        <label class="form-check-label" for="inlineRadio7">Opção 7</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio8" value="option8" (change)="changeRes3($event)">
+                        <label class="form-check-label" for="inlineRadio8">Opção 8</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio9" value="option9" (change)="changeRes3($event)">
+                        <label class="form-check-label" for="inlineRadio9">Opção 9</label>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-check-label mb-2">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard.
+                    </label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio10" value="option10" (change)="changeRes4($event)">
+                        <label class="form-check-label" for="inlineRadio10">Opção 10</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio11" value="option11" (change)="changeRes4($event)">
+                        <label class="form-check-label" for="inlineRadio11">Opção 11</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio12" value="option12" (change)="changeRes4($event)">
+                        <label class="form-check-label" for="inlineRadio12">Opção 12</label>
+                    </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-check-label mb-2" for="file">Anexo</label>
+                    <input class="form-control" type="file" name="arquivo" accept="application/pdf" (change)="changeSelectedFile($event)" required>
+                </div>
+               
+                <div class="form-group mb-3">
+                    <label class="form-check-label mb-2" for="email">E-mail</label>
+                    <input class="form-control" type="email" name="email" formControlName="email" autocomplete="off" required>
+                </div>
+
+                <div class="container-btn mt-4">
+                    <button type="submit" class="btn btn-register" (click)="submitRegisterClient()">
+                        Cadastrar
+                    </button>
+                </div>
+            </form>
+        </ng-container>
+
+        <ng-container *ngIf="data.modalType === 'CONFIRMATION'">
+      
+            <div class="content-confirm">
+                <i class='bx bx-x' (click)="closeModal()"></i>
+                <i class='bx bxs-check-circle'></i>
+                <p>Seu cadastro foi enviado e está em avaliação</p>
             </div>
         </ng-container>
     </div>

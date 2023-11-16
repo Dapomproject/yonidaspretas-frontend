@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit{
   }
 
   getUsersPagination(): void {
+    this.publicService.getUsersClient().subscribe(users => console.log(users))
     this.contentArray = [
       {
         ID: 1, 

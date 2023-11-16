@@ -8,7 +8,8 @@
         [colData]="colData"
         [actions]="true"
         [typeTable]="'cadastrados'"
-        (editBtn)="editGetEvent($event)"
+        (detailBtnRespostas)="openDialogRespostas($event)"
+        (updateBtn)="updateGetEvent($event)"
         (deleteBtn)="deleteGetEvent($event)">
     </app-table>
 </div>

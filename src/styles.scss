@@ -140,7 +140,8 @@ select.form-select {
     .modal-content{
         border-radius: 16px;
     }
-    &.modal-aprovados{
+    &.modal-aprovados,
+    &.modal-register-client{
         max-width: 600px;
     }
     &.modal-respostas{
