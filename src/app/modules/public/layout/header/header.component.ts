@@ -1,5 +1,7 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { AuthService } from 'src/app/modules/auth/auth.service';
+import { LoginService } from 'src/app/modules/login/services/login.service';
 import { ModalComponent } from 'src/app/modules/shared/modal/modal.component';
 
 @Component({
@@ -10,16 +12,25 @@ import { ModalComponent } from 'src/app/modules/shared/modal/modal.component';
 export class HeaderComponent implements OnInit {
   bsModalRef?: BsModalRef;
   scrollPosition: any;
+  hasLogged = true;
 
   constructor(
     private renderer: Renderer2,
     private modalService: BsModalService,
+    private authService: AuthService,
+    private loginService: LoginService
   ) { }
 
   ngOnInit(): void {
     this.renderer.listen(window, 'scroll', ($event) => {
       this.scrollPosition = window.scrollY;
     });
+
+    if(this.authService.getToken() !== null) {
+      this.hasLogged = true;
+    } else {
+      this.hasLogged = false;
+    }
   }
 
   openDialogRegisterClient() {
@@ -33,6 +44,10 @@ export class HeaderComponent implements OnInit {
       ModalComponent,
       Object.assign({ initialState }, { class: 'modal-register-client' }),
     );
+  }
+
+  logout() {
+    this.loginService.logout();
   }
 
 }

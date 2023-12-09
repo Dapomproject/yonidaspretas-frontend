@@ -18,8 +18,12 @@ const routes: Routes = [
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
   },
   {
-    path: 'registro',
+    path: 'cadastrar-senha',
     loadChildren: () => import('./modules/registro/registro.module').then(m => m.RegistroModule)
+  },
+  {
+    path: 'esqueci-senha',
+    loadChildren: () => import('./modules/esqueci-senha/esqueci-senha.module').then(m => m.EsqueciSenhaModule)
   },
 ];
 

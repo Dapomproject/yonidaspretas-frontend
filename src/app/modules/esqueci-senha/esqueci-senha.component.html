@@ -1,0 +1,36 @@
+<div class="content-login">
+    <div class="container">
+        <div class="wrap-login">
+            <form *ngIf="!sendMailRecovery" [formGroup]="recoverForm" class="login-form validate-form">
+                <div class="logo-top-login">
+                    <a class="link" routerLink="/">
+                        <img src="assets/imgs/yoni_das_pretas_logo_marrom.png" alt="logo">
+                    </a>
+                </div>
+    
+                <p>Informe seu e-mail para recuperação de senha</p>
+                
+                <div class="form-group validate-input mb-3" data-validate="Valid email is required: ex@abc.xyz">
+                    <input class="form-control" type="email" name="email" formControlName="email" placeholder="E-mail"
+                        autocomplete="off" required>
+                    <i class='bx bx-envelope bx-sm'></i>
+                </div>
+
+                <div class="container-btn mt-3">
+                    <span *ngIf="msgErro" class="msg-erro">{{msgErro}}</span>
+                    <button type="submit" class="btn" [ngClass]="{'waiting': loading}" (click)="submitRecover()">
+                        {{ loading ? 'Enviando...' : 'Enviar' }}
+                    </button>
+                </div>
+            </form>
+
+            <div *ngIf="sendMailRecovery" class="updatedSuccess">
+                <div class="wrap-circle-icon">
+                    <i class='bx bxs-check-circle'></i>
+                </div>
+                <span>Link de recuperação de senha enviado para seu e-mail</span>
+                <a class="nav-link" routerLink="/">Ir para home</a>
+            </div>
+        </div>
+    </div>
+</div>

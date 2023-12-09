@@ -11,6 +11,10 @@ import { NgxBootstrapModule } from '../shared/ngx-bootstrap.module';
 import { HomeDetalhesComponent } from './home-detalhes/home-detalhes.component';
 import { RouterModule } from '@angular/router';
 import { ReplacePipe } from '../utils/replace.pipe';
+import { MinhaContaComponent } from './usuarios/minha-conta/minha-conta.component';
+import { TooltipDirective } from '../utils/tooltip.directive';
+import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask, provideNgxMask } from 'ngx-mask';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 
 @NgModule({
@@ -20,7 +24,9 @@ import { ReplacePipe } from '../utils/replace.pipe';
     HeaderComponent,
     FooterComponent,
     HomeDetalhesComponent,
-    ReplacePipe
+    ReplacePipe,
+    MinhaContaComponent,
+    TooltipDirective,
   ],
   imports: [
     CommonModule,
@@ -29,10 +35,17 @@ import { ReplacePipe } from '../utils/replace.pipe';
     FormsModule,
     ReactiveFormsModule,
     NgxBootstrapModule,
+    NgxMaskDirective, 
+    NgxMaskPipe,
+    NgxSkeletonLoaderModule
   ],
   exports: [
     HeaderComponent,
     FooterComponent
+  ],
+  providers: [
+    provideEnvironmentNgxMask(),
+    provideNgxMask(),
   ]
 })
 export class PublicModule { }

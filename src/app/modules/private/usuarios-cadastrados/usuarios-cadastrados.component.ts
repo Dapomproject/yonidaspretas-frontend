@@ -60,7 +60,7 @@ export class UsuariosCadastradosComponent implements OnInit {
     const formData = new FormData();
     formData.append('formUsersClient', JSON.stringify(dataUserUpdated));
 
-    this.publicService.updateUserClient(event.data.ID, formData).subscribe(res => {
+    this.publicService.updateStatusUserClient(event.data.ID, formData).subscribe(res => {
       this.getUsuariosCadastrados();
       event.status === 1 ? this.toastr.success('Usuário aprovado com sucesso', '') : this.toastr.success('Usuário reprovado', '')
     }, (err) => {

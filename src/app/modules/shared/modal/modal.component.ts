@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PublicService } from '../../public/services/public.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +11,8 @@ import { PublicService } from '../../public/services/public.service';
 })
 export class ModalComponent implements OnInit{
   @Input() data?: any = [];
+  highlightedImage = 'assets/imgs/placeholder.jpg';
+  selectedImage: any;
 
   changeRespostas = {
     res1: '',
@@ -37,27 +40,41 @@ export class ModalComponent implements OnInit{
     linkFacebook: [''],
     linkLinkedin: [''],
     respostas:[''],
-    endereco: [''],
+    cep: [''],
+    rua: [''],
+    numero: [''],
+    complemento: [''],
+    estado: [''],
+    bairro: [''],
+    cidade: [''],
+    uf: [''],
     status: [],
   });
 
   dadosRespostas: any = [];
 
+  servicosCliente = {
+    imagem: '',
+    titulo: '',
+    valor: '',
+    descricao: ''
+  }
+ 
+
   constructor(
     private fb: FormBuilder,
     private modalService: BsModalService,
     public bsModalRef: BsModalRef,
-    private publicService: PublicService
+    private publicService: PublicService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
     this.getRespostasFormulario();
-    console.log(this.data)
   }
 
   closeModal(): void {
     this.modalService.hide();
-   
   }
 
   changeRes1(event: any){
@@ -118,6 +135,25 @@ export class ModalComponent implements OnInit{
 
   getRespostasFormulario() {
     this.dadosRespostas.push(this.data?.dadosResposta?.data?.respostas);
+  }
+
+  showPreviewImage(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.highlightedImage = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    } else {
+      this.highlightedImage = 'assets/imgs/placeholder.jpg';
+      this.selectedImage = null;
+    }
+  }
+
+  addService() {
+    this.servicosCliente.imagem = this.highlightedImage;
+    this.publicService.subjectServicos.next(this.servicosCliente);
+    this.closeModal();
+    this.toastr.success('Serviço adicionado com sucesso!', '');
   }
 
 

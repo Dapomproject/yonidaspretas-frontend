@@ -22,6 +22,7 @@ export class LoginComponent {
 
   registerForm: UntypedFormGroup = this.fb.group({
     id: [''],
+    usuarioID: [''],
     nomeCompleto: [''],
     email: ['', [Validators.required, Validators.email]],
     senha: ['', [Validators.required, Validators.minLength(6)]],
@@ -44,6 +45,7 @@ export class LoginComponent {
   
     submitNewUser(): void {
       this.loading = true;
+      this.registerForm.get('usuarioID')?.patchValue(0);
       this.registerForm.get('nomeCompleto')?.patchValue('Administrador')
       this.registerForm.get('email')?.patchValue('admin@yonidaspretas.com.br')
       this.registerForm.get('senha')?.patchValue('admin@2023')

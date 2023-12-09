@@ -9,11 +9,12 @@
 
     .wrap-login {
         left: 0;
-        top: 16vh;
+        top: 0;
         right: 0;
+        bottom: 0;
         margin: auto;
         width: 400px;
-        height: auto;
+        height: 410px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -179,7 +180,23 @@
     top: -8px;
     font-size: 15px;
 }
-
+.updatedSuccess{
+    text-align: center;
+    i{
+        font-size: 80px;
+        margin-bottom: 30px;
+        color: #36c3a5;
+    }
+    span{
+        font-size: 25px;
+        font-weight: 500;
+        line-height: 30px;
+    }
+    a{
+        margin-top: 20px;
+        color: #a24337;
+    }
+}
 
 
 /*======================= RESPONSIVE =======================*/

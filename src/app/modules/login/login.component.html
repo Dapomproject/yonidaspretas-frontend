@@ -25,7 +25,7 @@
                     <i (click)="showHidPassword()" class="bx bx-sm" [ngClass]="(show == true) ? 'bx-show' : 'bx-hide'"></i>
                 </div>
                 <div class="contact-form-recover">
-                    <a class="nav-link" href="#">Esqueceu a senha?</a>
+                    <a class="nav-link" routerLink="/esqueci-senha">Esqueceu a senha?</a>
                 </div>
                 <div class="container-btn mt-3">
                     <span *ngIf="msgErro" class="msg-erro">{{msgErro}}</span>

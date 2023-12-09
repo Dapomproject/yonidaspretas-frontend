@@ -2,14 +2,14 @@
 
 <section class="section-freelas">
     <div class="container">
-        <h1>Vitrine</h1>
+        <h1>Rizoma</h1>
 
         <div class="bg-filter">
             <div class="col-filter">
-                <input #searchEstado  [(ngModel)]="selectedEstado" [typeahead]="estados"  (typeaheadOnSelect)="onSelect($event)"
+                <input #searchEstado  [(ngModel)]="selectedEstado" [typeahead]="estados"  (typeaheadOnSelect)="onSelectCidade($event)"
                 typeaheadOptionField="nome" [typeaheadMinLength]="0" placeholder="Estado" class="form-control">
                 <i *ngIf="selectedEstado == '' || selectedEstado == undefined" class='bx bx-chevron-down' (click)="searchEstado.focus()"></i>
-                <i *ngIf="selectedEstado !== '' && selectedEstado !== undefined" class='bx bx-x' (click)="selectedEstado = ''"></i>
+                <i *ngIf="selectedEstado !== '' && selectedEstado !== undefined" class='bx bx-x' (click)="selectedEstado = ''; selectedUF = ''"></i>
             </div>
             <div class="col-filter">
                 <input #searchCidade [(ngModel)]="selectedCidade" [typeahead]="cidades" 
@@ -30,39 +30,70 @@
                 <i *ngIf="selectedProfissao !== '' && selectedProfissao !== undefined" class='bx bx-x' (click)="selectedProfissao = ''"></i>
             </div>
             <div class="col-filter">
-                <button class="btn">Filtrar</button>
+                <button class="btn" (click)="getUsersFilters()">Filtrar</button>
             </div>
         </div>
 
 
         <div class="row">
-            <div *ngIf="messageEmpty !== ''" class="col-lg-12" [innerHtml]="messageEmpty"></div>
-            <ng-container *ngFor="let f of contentArray">
+            <ng-container *ngFor="let client of [1,2,3,4]">
+                <div class="col-lg-6" *ngIf="returnedArray.length === 0">
+                    <ngx-skeleton-loader  animation="progress"
+                    [theme]="{ height: '70px', 'background-color': '#e1e1e1', 'border-radius': '15px', 'box-shadow': '0px 2px 15px 0px rgba(113, 50, 18, 0.2039215686)'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader  animation="progress"
+                    [theme]="{ height: '180px', 'background-color': '#e1e1e1', 'border-radius': '15px', 'box-shadow': '0px 2px 15px 0px rgba(113, 50, 18, 0.2039215686)'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader  animation="progress"
+                    [theme]="{ height: '10px', 'background-color': '#e1e1e1', 'border-radius': '15px', 'box-shadow': '0px 2px 15px 0px rgba(113, 50, 18, 0.2039215686)'}">
+                    </ngx-skeleton-loader>
+                    <ngx-skeleton-loader  animation="progress"
+                    [theme]="{ height: '50px', 'background-color': '#e1e1e1', 'border-radius': '15px', 'box-shadow': '0px 2px 15px 0px rgba(113, 50, 18, 0.2039215686)', 'margin-bottom': '40px',}">
+                    </ngx-skeleton-loader>
+                </div>
+            </ng-container>
+            
+            <ng-container *ngFor="let client of returnedArray">
 
                 <div class="col-lg-6">
+            
                     <div class="card card-profile">
                         <div class="profile-header">
-                            <a routerLink="vitrine/{{f.nomeSocial | replace}}" class="box-avatar">
-                                <img src="{{f.foto !== 'undefined' && f.foto !== null ? f.foto : 'assets/imgs/user-empty.svg'}}">
+                            
+                            <a routerLink="rizoma/{{client.nomeSocial | replace}}" class="box-avatar" (click)="setIdStorage(client.ID)">
+                            
+                                <img src="{{client.avatar !== 'undefined' && client.avatar !== null ? client.avatar : 'assets/imgs/user-empty.svg'}}">
                             </a>
                             <div class="wrap-texts">
-                                <a class="nav-link" routerLink="vitrine/{{f.nomeSocial | replace}}">
-                                    <h2>{{f.nomeSocial}}</h2>
+                                <a class="nav-link" routerLink="rizoma/{{client.nomeSocial | replace}}" (click)="setIdStorage(client.ID)">
+                                    <h2>{{client.nomeSocial}}</h2>
                                 </a>
-                                <p>{{f.profissao}}</p>
-                                <p>São Paulo, SP - Brasil</p>
-                                <p>{{f.email}}</p>
+                                <p>{{client.profissao}}</p>
+                                <p>{{client.cidade}}, {{client.uf}} - Brasil</p>
+                                <p>{{client.email}}</p>
+                                <div class="d-flex align-items-center justify-content-start mt-2 gap-2">
+                                    <p *ngIf="client.formatoAtendimento === 'p' || client.formatoAtendimento === 'po'" class="tag presencial">
+                                        <i class='bx bx-user-voice'></i> 
+                                        Presencial
+                                    </p>
+                                    <p *ngIf="client.formatoAtendimento === 'o' || client.formatoAtendimento === 'po'"  class="tag distancia">
+                                        <i class='bx bx-webcam'></i> 
+                                        À distância
+                                    </p>
+                                </div>
                                 <div class="socials">
-                                    <a class="nav-link" href="#">
+                                    <a *ngIf="client.celular" class="nav-link" 
+                                    href="https://api.whatsapp.com/send?l=pt&phone={{client.celular}}&text=Olá, encontrei seu contato no site Yoni das pretas e queria mais informações" 
+                                    target="_blank">
                                         <i class='bx bxl-whatsapp' ></i>
                                     </a>
-                                    <a class="nav-link" href="#">
+                                    <a *ngIf="client.linkInstagram" class="nav-link" href="{{client.linkInstagram}}" target="_blank">
                                         <i class='bx bxl-instagram' ></i>
                                     </a>
-                                    <a class="nav-link" href="#">
+                                    <a *ngIf="client.linkFacebook" class="nav-link" href="{{client.linkFacebook}}" target="_blank">
                                         <i class='bx bxl-facebook'></i>
                                     </a>
-                                    <a class="nav-link" href="#">
+                                    <a *ngIf="client.linkLinkedin" class="nav-link" href="{{client.linkLinkedin}}" target="_blank">
                                         <i class='bx bxl-linkedin'></i>
                                     </a>
                                 </div>
@@ -70,20 +101,25 @@
                         </div>
                         <div class="profile-bottom">
                             <h3>Sobre mim</h3>
-                            <p>{{f.descricaoNegocio}}</p>
+                            <p>{{client.breveDescricao}}</p>
                         </div>
 
                     </div>
                 </div>
             </ng-container>
+        </div>
 
-           <button class="btn btn-show-more" (click)="showMore()">Exibir mais</button>
+        <div *ngIf="contentArray.length > 6" class="col-lg-12 mt-4 mb-5">
+            <pagination previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="10" [boundaryLinks]="true"
+             [itemsPerPage]="6" [totalItems]="contentArray.length" (pageChanged)="pageChanged($event)">
+            </pagination>
         </div>
 
         <div class="wrap-loading" *ngIf="loading">
             <img src="assets/icons/loading.gif">
             <p>Carregando dados...</p>
         </div>
+
     </div>
 </section>
 <app-footer></app-footer>

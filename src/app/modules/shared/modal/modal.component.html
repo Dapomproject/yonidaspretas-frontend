@@ -52,8 +52,14 @@
                 <p>{{data.dadosPerfil.endereco}}</p>
                 <p>{{data.dadosPerfil.profissao}}</p>
                 <div class="d-flex align-items-center justify-content-center mt-2 gap-2">
-                    <p class="tag presencial"><i class='bx bx-user-voice'></i> Presencial</p>
-                    <p class="tag distancia"><i class='bx bx-webcam'></i> À distância</p>
+                    <p *ngIf="data.dadosPerfil.formatoAtendimento === 'p' || data.dadosPerfil.formatoAtendimento === 'po'" class="tag presencial">
+                        <i class='bx bx-user-voice'></i> 
+                        Presencial
+                    </p>
+                    <p *ngIf="data.dadosPerfil.formatoAtendimento === 'o' || data.dadosPerfil.formatoAtendimento === 'po'"  class="tag distancia">
+                        <i class='bx bx-webcam'></i> 
+                        À distância
+                    </p>
                 </div>
             </div>
             <hr>
@@ -64,45 +70,10 @@
                     
                     <p class="subtitle">Serviços</p>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <p>An item</p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </p>
-                            <p class="price">R$ 600,00</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>A second item</p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </p>
-                            <p class="price">R$ 350,00</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>A third item</p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </p>
-                            <p class="price">R$ 1200,00</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>A fourth item</p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </p>
-                            <p class="price">R$ 700,00</p>
-                        </li>
-                        <li class="list-group-item">
-                            <p>And a fifth one</p>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                                Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, 
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                            </p>
-                            <p class="price">R$ 600,00</p>
+                        <li *ngFor="let s of data.dadosPerfil.produtosServicos" class="list-group-item">
+                            <p>{{s.titulo}}</p>
+                            <p>{{s.descricao}}</p>
+                            <p class="price">{{s.preco | currency: 'BRL'}}</p>
                         </li>
                     </ul>
                 </div>
@@ -204,6 +175,39 @@
                 <i class='bx bxs-check-circle'></i>
                 <p>Seu cadastro foi enviado e está em avaliação</p>
             </div>
+        </ng-container>
+
+        <ng-container *ngIf="data.modalType === 'CADASTRO_SERVICOS'">
+            <div class="content-register-service">
+                <div class="flex-items">
+                    <div class="box-image" (click)="fileUploader.click()">
+                        <img class="img-upload" [src]="highlightedImage" width="100%"
+                            alt="imagem-destacada">
+                        <input type="file" #fileUploader accept="image/*" class="form-control" id="avatar"
+                            aria-describedby="nome" placeholder="imagem" (change)="showPreviewImage($event)"hidden>
+                    </div>
+                    
+                    <div class="inputs">
+                        <div class="form-group mb-2">
+                            <label>Título</label>
+                            <input class="form-control" type="text" name="titulo" [(ngModel)]="servicosCliente.titulo">
+                        </div>
+                        <div class="form-group mb-2 w-75">
+                            <label>Valor</label>
+                            <input currencyMask class="form-control" type="text" name="valor" [(ngModel)]="servicosCliente.valor" 
+                            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group mb-2">
+                    <label>Descrição</label>
+                    <textarea class="form-control" name="descricao" [(ngModel)]="servicosCliente.descricao"></textarea>
+                </div>
+               
+                <button type="button" class="btn btn-add-service" (click)="addService()">Adicionar</button>
+            </div>
+           
         </ng-container>
     </div>
 </div>

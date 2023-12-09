@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, catchError, map, of, retry, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../../auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class LoginService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   register(user: any): Observable<any> {
@@ -23,7 +25,8 @@ export class LoginService {
         map(res => {
           this.authService.setDataInLocalStorage('token', res.token);
           this.authService.logged.next(true);
-          res.data.tipoUsuario === 'adm' ? this.router.navigate(['/private/admin']) : this.router.navigate(['/minha-conta']);
+          res.data.tipoUsuario === 'adm' ? this.router.navigate(['/private/admin']) : this.router.navigate(['/login']);
+          this.toastr.success('Cadastro realizado!', '');
         }),
         catchError(this.handleError)
       );
@@ -42,6 +45,20 @@ export class LoginService {
           } else if (res.data.tipoUsuario === environment.USER_TYPE.CLIENTE) {
             this.router.navigate(['/minha-conta']);
           }
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  atualizarSenhaUsuario(userID: any, user: any): Observable<any> {
+    return this.http.patch<any>(`${environment.API_URL}/atualizar-senha/${userID}`, user)
+      .pipe(
+        retry(1),
+        map(res => {
+          this.router.navigate(['/login']);
+          this.toastr.success('Senha atualizada com sucesso, faça login em sua conta!', '',  {
+            timeOut: 6000,
+          });
         }),
         catchError(this.handleError)
       );

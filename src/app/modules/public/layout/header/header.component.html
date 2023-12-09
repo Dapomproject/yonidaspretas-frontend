@@ -7,25 +7,47 @@
         <div class="navbar-right">
             <ul class="list-group list-group-horizontal">
                 <li class="list-group-item">
-                    <a class="nav-link" routerLink="/projetos-vagas">Inicio</a>
+                    <a class="nav-link" routerLink="/">Inicio</a>
                 </li>
-                <li class="list-group-item">
-                    <a class="nav-link" href="javascript:void(0);" (click)="openDialogRegisterClient()">Criar conta</a>
-                </li>
-                <li class="list-group-item">
-                    <a class="nav-link" routerLink="/login">Entrar</a>
-                </li>
+                <ng-container *ngIf="!hasLogged">
+                    <li class="list-group-item">
+                        <a class="nav-link" href="javascript:void(0);" (click)="openDialogRegisterClient()">Criar conta</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="nav-link" routerLink="/login">Entrar</a>
+                    </li>
+                </ng-container>
             </ul>
             
-            <!--div *ngIf="(isLogged$ | async)" class="btn-group" dropdown>
-                <img class="dropdown-toggle" dropdownToggle aria-controls="dropdown-basic" src="assets/icons/user.svg">
+            <div *ngIf="hasLogged" class="profile-menu" dropdown>
+                <div class="user" dropdownToggle aria-controls="dropdown-animated">
+                    <div class="box-image-user">
+                        <img src="assets/imgs/user-empty.svg">
+                    </div>
     
-                <ul id="dropdown-basic-user" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-                    <li role="menuitem">
-                        <a class="dropdown-item" href="javascript:void(0);" (click)="logout();">Sair</a>
+                    <span></span>
+                    <i class='bx bx-chevron-down bx-sm'></i>
+                </div>
+    
+                <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu drop-user" role="menu"
+                    aria-labelledby="button-animated">
+                    <li class="menuitem">
+                        <p>Ações</p>
+                    </li>
+                    <li class="menuitem">
+                        <a routerLink="/minha-conta">
+                            <i class='bx bx-user-circle' ></i>
+                            <span>Minha Conta</span>
+                        </a>
+                    </li>
+                    <li class="menuitem">
+                        <a routerLink="." (click)="logout()">
+                            <i class='bx bx-log-out'></i>
+                            <span>Sair</span>
+                        </a>
                     </li>
                 </ul>
-            </div-->
+            </div>
         </div>
     </div>
 </nav>

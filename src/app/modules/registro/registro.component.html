@@ -2,7 +2,7 @@
     <div class="container">
         <div class="wrap-login" [ngClass]="{'expanded-height': !showLoginForm}">
 
-            <form [formGroup]="loginForm" class="login-form validate-form" 
+            <form [formGroup]="registerForm" class="login-form validate-form" 
                 [ngClass]="!showLoginForm ? 'hide' : 'show'">
                 <div class="logo-top-login">
                     <a class="link" routerLink="/">
@@ -10,27 +10,40 @@
                     </a>
                 </div>
     
-                <p>Cadastro</p>
-                
-                <div class="form-group validate-input mb-3" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="form-control" type="email" name="email" formControlName="email" placeholder="E-mail"
-                        autocomplete="off" required>
-                    <i class='bx bx-envelope bx-sm'></i>
-                </div>
+                <p>{{newPass ? 'Cadastrar nova senha' : 'Cadastro de senha'}}</p>
     
                 <div class="form-group validate-input mb-2" data-validate="Password is required">
                     <input class="form-control" type="{{type}}" name="pass" formControlName="senha" placeholder="Senha"
-                        autocomplete="off" required>
+                        autocomplete="off" [ngClass]="{'invalid': submitted && registerForm.controls.senha.errors }" required>
                     <i class='bx bx-lock bx-sm'></i>
                     <i (click)="showHidPassword()" class="bx bx-sm" [ngClass]="(show == true) ? 'bx-show' : 'bx-hide'"></i>
                 </div>
-                <div class="contact-form-recover">
-                    <a class="nav-link" href="#">Esqueceu a senha?</a>
+                
+                <div class="form-group validate-input mb-2" data-validate="Password is required">
+                    <input class="form-control" type="{{type}}" name="pass" formControlName="confirmarSenha" placeholder="Confirmar Senha"
+                        autocomplete="off" [ngClass]="{'invalid': submitted && registerForm.controls.confirmarSenha.errors }" required>
+                    <i class='bx bx-lock bx-sm'></i>
+                    <i (click)="showHidPassword()" class="bx bx-sm" [ngClass]="(show == true) ? 'bx-show' : 'bx-hide'"></i>
                 </div>
+
+                <password-strength-meter [password]="registerForm.controls.senha.value" [enableFeedback]="true"/>
+
+                <div *ngIf="submitted && registerForm.controls.senha.errors" id="invalid-feedback-msg">
+                    <p class="mb-0" *ngIf="registerForm.controls.senha.errors.required">Informe uma senha</p>
+                    <p class="mb-0" *ngIf="registerForm.controls.senha.errors.minlength">Mínimo 6 caracteres</p>
+                </div>
+                <div *ngIf="submitted && registerForm.controls.confirmarSenha.errors" id="invalid-feedback-msg">
+                    <p class="mb-0" *ngIf="registerForm.controls.confirmarSenha.errors.required">Confirme a senha</p>
+                    <p class="mb-0" *ngIf="registerForm.controls.confirmarSenha.errors.minlength">Mínimo 6 caracteres</p>
+                    <p class="mb-0" *ngIf="registerForm.controls.confirmarSenha.errors.confirmedValidator">Senhas não conferem</p>
+                </div>
+
+                <ngx-recaptcha2 #captchaElem [siteKey]="siteKey"[useGlobalDomain]="false" formControlName="recaptcha"></ngx-recaptcha2>
+
                 <div class="container-btn mt-3">
                     <span *ngIf="msgErro" class="msg-erro">{{msgErro}}</span>
-                    <button type="submit" class="btn" [ngClass]="{'waiting': loading}" (click)="submitLogin()">
-                        {{ loading ? 'Entrando...' : 'Entrar' }}
+                    <button type="submit" class="btn" [ngClass]="{'waiting': loading}" (click)="newPass ? atualizarSenhaUsuario() : submitNewUser()">
+                        {{ loading ? 'Cadastrando...' : 'Cadastrar' }}
                     </button>
                 </div>
             </form>

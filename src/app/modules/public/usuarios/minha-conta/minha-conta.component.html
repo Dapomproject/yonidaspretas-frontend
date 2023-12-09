@@ -1,0 +1,178 @@
+<app-header></app-header>
+<section class="section-myaccount">
+    <div class="container">
+        <h1>Minha conta</h1>
+        <form [formGroup]="updateClientForm" (ngSubmit)="updateClient()">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="label-form">
+                        <span>Dados gerais</span>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="avatar" (click)="fileUploader.click()">
+                                    <img class="img-upload" [src]="highlightedImage" width="100%" height="200px"
+                                        alt="imagem-destacada">
+                                    <input type="file" #fileUploader accept="image/*" class="form-control" id="avatar"
+                                        aria-describedby="nome" placeholder="imagem" (change)="showPreviewImage($event)"
+                                        hidden>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="form-group mb-2">
+                                    <label>Nome Completo</label>
+                                    <input class="form-control" type="text" name="nomeCompleto" formControlName="nomeCompleto">
+                                </div>
+                                <div class="form-group mb-2 w-75">
+                                    <label>Nome Social</label>
+                                    <input class="form-control" type="text" name="nomeSocial" formControlName="nomeSocial">
+                                </div>
+                                <div class="row">
+                                    <div class="form-group mb-2 w-50">
+                                        <label>Profissão</label>
+                                        <input class="form-control" type="text" name="profissao" formControlName="profissao">
+                                    </div>
+                                    <div class="form-group mb-2 w-50">
+                                        <label>Formato Atendimento</label>
+                                        <select class="form-select" name="formatoAtendimento" formControlName="formatoAtendimento">
+                                            <option value=""></option>
+                                            <option value="p">Presencial</option>
+                                            <option value="o">Online</option>
+                                            <option value="po">Presencial / Online</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-2 w-75">
+                                        <label>E-mail</label>
+                                        <input class="form-control" type="text" name="email" formControlName="email">
+                                    </div>
+                                    <div class="form-group mb-2 w-25">
+                                        <label>Whatsapp</label>
+                                        <input class="form-control" type="text" name="celular" formControlName="celular" mask="(00) 0 0000-0000">
+                                    </div>
+                                    <div class="form-group mb-2 w-50">
+                                        <label>Anexo</label>
+                                        <input class="form-control" type="file" name="nomeCompleto">
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-2">
+                                    <label>Breve descrição</label>
+                                    <textarea class="form-control breve" name="breveDescricao" formControlName="breveDescricao"></textarea>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label>Descrição completa</label>
+                                    <textarea class="form-control completa" name="descricaoCompleta" formControlName="descricaoCompleta"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /col-lg-12 -->
+
+                <div class="col-lg-12">
+                    <div class="label-form">
+                        <span>Serviços</span>
+                        <div class="wrap-servicos">
+                            <div class="card mb-3" *ngFor="let s of arrayServicosAdicionados; let i = index">
+                                <div class="flex-card">
+                                  <div class="imagem">
+                                    <img [src]="s.imagem" class="img-fluid rounded-start" alt="...">
+                                  </div>
+                                  <div class="textos">
+                                    <div class="card-body">
+                                      <h5 class="card-title">{{s.titulo}}</h5>
+                                      <p class="card-text">{{s.descricao.length > 250 ? (s.descricao | slice:0:250) + ' ...' : s.descricao }}</p>
+                                      <p class="card-text"><small class="text-body-secondary">{{s.valor | currency: 'BRL'}}</small></p>
+                                    </div>
+                                  </div>
+                                  <div class="acoes">
+                                    <i class='bx bx-trash' (click)="removerSevico(i)"></i>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                        <button (click)="openModalCadastroServico()" type="button" class="btn btn-adicionar">
+                            <i class='bx bx-plus' ></i> Adicionar
+                        </button>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12">
+                    <div class="label-form">
+                        <span>Redes Sociais</span>
+                       
+                        <div class="row">
+                            <div class="form-group mb-2 w-50">
+                                <label>Instagram</label>
+                                <input class="form-control" type="text" name="linkInstagram" formControlName="linkInstagram">
+                            </div>
+                            <div class="form-group mb-2 w-50">
+                                <label>Facebook</label>
+                                <input class="form-control" type="text" name="linkFacebook" formControlName="linkFacebook">
+                            </div>
+                            <div class="form-group mb-2 w-50">
+                                <label>Linkedin</label>
+                                <input class="form-control" type="text" name="linkLinkedin" formControlName="linkLinkedin">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 mb-5">
+                    <div class="label-form">
+                        <span>Dados de Endereço</span>
+                       
+                        <div class="row">
+                            <div class="form-group mb-2 w-25">
+                                <label>CEP</label>
+                                <input class="form-control" type="text" name="cep" formControlName="cep" mask="00000-000">
+                            </div>
+                            <div class="form-group mb-2 w-75">
+                                <label>Rua/Av.</label>
+                                <input class="form-control" type="text" name="rua" formControlName="rua">
+                            </div>
+                            <div class="form-group mb-2 w-25">
+                                <label>Número</label>
+                                <input class="form-control" type="text" name="numero" formControlName="numero">
+                            </div>
+                            <div class="form-group mb-2 w-50">
+                                <label>Complemento</label>
+                                <input class="form-control" type="text" name="complemento" formControlName="complemento">
+                            </div>
+                            <div class="form-group mb-2 w-25">
+                                <label>Bairro</label>
+                                <input class="form-control" type="text" name="bairro" formControlName="bairro">
+                            </div>
+                            <div class="form-group mb-2 w-50">
+                                <label>Estado</label>
+                                <select class="form-select" formControlName="estado" (change)="onSelectCidade($event)">
+                                    <option value=""></option>
+                                    <option *ngFor="let e of estados" [ngValue]="[e.nome, e.sigla]" [selected]="updateClientForm.controls.estado.value[0] == e.nome">
+                                        {{e.nome}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-2 w-50">
+                                <label>Cidade</label>
+                                <select class="form-select" formControlName="cidade">
+                                    <option value=""></option>
+                                    <option *ngFor="let c of cidades"  [value]="c.nome" [selected]="updateClientForm.controls.cidade.value == c.nome">{{c.nome}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-2 w-25">
+                                <label>UF</label>
+                                <input class="form-control" type="text" name="uf" formControlName="uf">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-salvar">Salvar</button>
+                </div>
+
+            </div><!-- /row -->
+
+        </form>
+
+    </div>
+</section>

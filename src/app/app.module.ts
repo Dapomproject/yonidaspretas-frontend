@@ -6,6 +6,18 @@ import { AppRoutingModule } from './app-routing.modules';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './modules/auth/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
+import { CURRENCY_MASK_CONFIG, CurrencyMaskConfig } from 'ng2-currency-mask';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "left",
+  allowNegative: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
+};
 
 @NgModule({
   declarations: [
@@ -17,7 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot({
-      timeOut: 2000,
+      timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     })
@@ -28,6 +40,8 @@ import { ToastrModule } from 'ngx-toastr';
       useClass: InterceptorService,
       multi: true
     },
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

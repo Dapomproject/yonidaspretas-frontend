@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable, Subject, catchError, retry} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { saveAs } from 'file-saver';
 
@@ -8,6 +8,7 @@ import { saveAs } from 'file-saver';
   providedIn: 'root'
 })
 export class PublicService {
+  public subjectServicos = new Subject();
 
   constructor(
     private http: HttpClient
@@ -46,8 +47,32 @@ export class PublicService {
     );
   }
 
+  updateStatusUserClient(ID: number, status: any): Observable<any>  {
+    return this.http.patch<any>(`${environment.API_URL}/update-status-user/${ID}`, status)
+    .pipe(
+      retry(1),
+      catchError((error) => {return error})
+    );
+  }
+
   getUsersClient(): Observable<any>  {
     return this.http.get<any>(`${environment.API_URL}/all-users-client`)
+    .pipe(
+      retry(1),
+      catchError((error) => {return error})
+    );
+  }
+
+  getUsersFilters(filters: any): Observable<any>  {
+    return this.http.post<any>(`${environment.API_URL}/all-user-filters`, filters)
+    .pipe(
+      retry(1),
+      catchError((error) => {return error})
+    );
+  }
+
+  getUsersClientById(ID: number): Observable<any>  {
+    return this.http.get<any>(`${environment.API_URL}/user-client-id/${ID}`)
     .pipe(
       retry(1),
       catchError((error) => {return error})
@@ -59,4 +84,6 @@ export class PublicService {
       saveAs(response, 'arquivo.pdf');
     });
   }
+
+  
 }
