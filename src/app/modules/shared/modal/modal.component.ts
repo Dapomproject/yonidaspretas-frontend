@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { PublicService } from '../../public/services/public.service';
 import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-modal',
@@ -12,135 +12,81 @@ import { ToastrService } from 'ngx-toastr';
 export class ModalComponent implements OnInit{
   @Input() data?: any = [];
   highlightedImage = 'assets/imgs/placeholder.jpg';
-  selectedImage: any;
+  selectedImage: any
 
-  changeRespostas = {
-    res1: '',
-    res2: '',
-    res3: '',
-    res4: '',
-  }
+  dadosFormulario: any = [];
 
-  selectedFile: any;
-
-  regiterClientForm: UntypedFormGroup = this.fb.group({
-    ID: [],
-    nomeCompleto: [''],
-    nomeSocial: [''],
-    avatar: [''],
-    email: ['', [Validators.required, Validators.email]],
-    profissao: [''],
-    celular: [''],
-    breveDescricao: [''],
-    descricaoCompleta: [''],
-    produtosServicos: [''],
-    formatoAtendimento: [''],
-    file: [''],
-    linkInstagram: [''],
-    linkFacebook: [''],
-    linkLinkedin: [''],
-    respostas:[''],
-    cep: [''],
-    rua: [''],
-    numero: [''],
-    complemento: [''],
-    estado: [''],
-    bairro: [''],
-    cidade: [''],
-    uf: [''],
-    status: [],
-  });
-
-  dadosRespostas: any = [];
-
-  servicosCliente = {
+  servicosCliente: any = {
     imagem: '',
     titulo: '',
     valor: '',
     descricao: ''
   }
  
-
   constructor(
-    private fb: FormBuilder,
     private modalService: BsModalService,
     public bsModalRef: BsModalRef,
     private publicService: PublicService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
     this.getRespostasFormulario();
+    this.getDadosServico();
   }
 
   closeModal(): void {
     this.modalService.hide();
   }
 
-  changeRes1(event: any){
-    this.changeRespostas.res1 = event.target.value;
-  }
-  changeRes2(event: any){
-    this.changeRespostas.res2 = event.target.value;
-  }
-  changeRes3(event: any){
-    this.changeRespostas.res3 = event.target.value;
-  }
-  changeRes4(event: any){
-    this.changeRespostas.res4 = event.target.value;
-  }
-
-  changeSelectedFile(event: any): void {
-    if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.readAsDataURL(event.target.files[0]);
-      this.selectedFile = event.target.files[0];
-    } else {
-      this.selectedFile = null;
-    }
-  }
-
-  submitRegisterClient() {
-    this.regiterClientForm.controls.respostas.patchValue(this.changeRespostas);
-    const formData = new FormData();
-    
-    if (this.selectedFile) {
-      formData.append('arquivo', this.selectedFile);
-    }
-
-    formData.append('formUsersClient', JSON.stringify(this.regiterClientForm.value));
-    
-    this.publicService.newUserClient(formData).subscribe(res => {
-      if(res) {
-        this.closeModal();
-        setTimeout(() => {
-          this.openDialogConfirmation();
-        }, 500)
-      
-      }
-    })
-  }
-
-  openDialogConfirmation() {
-    const initialState = {
-      data: {
-        modalType: 'CONFIRMATION',
-      }
-    };
-    this.bsModalRef = this.modalService.show(
-      ModalComponent,
-      Object.assign({ initialState }, { class: 'modal-register-client' }),
-    );
-  }
-
   getRespostasFormulario() {
-    this.dadosRespostas.push(this.data?.dadosResposta?.data?.respostas);
+    this.dadosFormulario.push(this.data?.dadosResposta?.data);
+  }
+
+  getDadosServico() {
+    if (this.data.dadosServico != undefined) {
+      this.servicosCliente = this.data.dadosServico[this.data.indiceServico];
+      this.highlightedImage = this.data.dadosServico[this.data.indiceServico]?.imagem;
+    }
   }
 
   showPreviewImage(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();
-      reader.onload = (e: any) => this.highlightedImage = e.target.result;
+      reader.onload = (e: any) => {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+  
+          // Defina a largura e altura desejada para a imagem redimensionada
+          const maxWidth = 800;  // Ajuste conforme necessário
+          const maxHeight = 800;  // Ajuste conforme necessário
+  
+          let width = img.width;
+          let height = img.height;
+  
+          if (width > height) {
+            if (width > maxWidth) {
+              height = Math.round(height * (maxWidth / width));
+              width = maxWidth;
+            }
+          } else {
+            if (height > maxHeight) {
+              width = Math.round(width * (maxHeight / height));
+              height = maxHeight;
+            }
+          }
+  
+          canvas.width = width;
+          canvas.height = height;
+          ctx?.drawImage(img, 0, 0, width, height);
+          
+          this.highlightedImage = canvas.toDataURL('image/jpeg', 0.6);  // 0.7 é a qualidade da imagem (70%)
+        };
+      };
       reader.readAsDataURL(event.target.files[0]);
       this.selectedImage = event.target.files[0];
     } else {
@@ -150,11 +96,58 @@ export class ModalComponent implements OnInit{
   }
 
   addService() {
-    this.servicosCliente.imagem = this.highlightedImage;
-    this.publicService.subjectServicos.next(this.servicosCliente);
-    this.closeModal();
-    this.toastr.success('Serviço adicionado com sucesso!', '');
+    if (this.selectedImage.size <= 1000000) {
+      this.servicosCliente.imagem = this.highlightedImage;
+    
+      this.publicService.subjectServicos.next(this.servicosCliente);
+      this.closeModal();
+      this.toastr.success('Serviço adicionado com sucesso!', '');
+    } else {
+      alert('ATENÇÃO: Selecione uma imagem com tamanho menor ou igual a 1MB');
+    }
   }
+
+  editService() {
+    if(this.selectedImage){
+      if (this.selectedImage.size <= 1000000) {
+        this.servicosCliente.imagem = this.highlightedImage;
+        this.publicService.subjectServicos.next(this.servicosCliente);
+        this.closeModal();
+        this.toastr.success('Serviço atualizado com sucesso!', '');
+      } else {
+        alert('ATENÇÃO: Selecione uma imagem com tamanho menor ou igual a 1MB');
+      }
+    } else {
+        this.publicService.subjectServicos.next(this.servicosCliente);
+        this.closeModal();
+        this.toastr.success('Serviço atualizado com sucesso!', '');
+    }
+    
+  
+  }
+
+  delete() {
+    this.publicService.deleteUsersClientById(this.data.dados.data.ID).subscribe(() => {
+      this.toastr.success('Usuário removido com sucesso!', '');
+      this.closeModal();
+      this.deleteUserLogin()
+    }, (err) => {
+      if(err) {
+        this.toastr.error('Ocorreu um erro ao remover o usuário.', '');
+      }
+    });
+  }
+
+  deleteUserLogin() {
+    this.publicService.deleteUsersClientLoginByUsuarioID(this.data.dados.data.ID).subscribe(() => {
+    }, (err) => {
+      if(err) {
+        this.toastr.error('Ocorreu um erro ao remover o usuário.', '');
+      }
+    });
+  }
+
+  
 
 
 }

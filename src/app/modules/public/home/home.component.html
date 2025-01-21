@@ -2,9 +2,47 @@
 
 <section class="section-freelas">
     <div class="container">
-        <h1>Rizoma</h1>
-
+        <a class="nav-link voltar" href="https://yonidaspretas.com/"><i class='bx bx-chevron-left'></i> Voltar para o site</a>
+        <div class="bg-topo">
+            <img class="logo-rizoma" src="assets/imgs/rizoma-logo.png">
+            <h1 class="desktop">É profissional e quer fazer parte?</h1>
+            <a class="nav-link desktop" routerLink="/cadastro">Cadastre-se</a>
+            <a class="nav-link mobile" routerLink="/cadastro">É profissional e quer fazer parte? <br>Cadastre-se</a>
+        </div>
+        <div class="description">
+            <div class="texts" [ngClass]="{'expanded': expandedText}">
+                <p>Com o propósito de conscientizar e promover espaços de Prazer e Bem Viver para mulheres/pessoas com vulva – especialmente negras, 
+                    a Yoni das Pretas comunidade que foi fundada em 2018 por Caroline Amanda nasceu.
+                </p>
+                <p>Acreditamos que por meio das Ciências e Tecnologias Ancestrais  aplicadas, é possível nos reconectar com a nossa verdade, 
+                   ganhar forças para regenerar e reparar as sequelas de toda a exploração, abusos e outras violências que temos sido submetidas, 
+                   e, à partir disso, agirmos comum-unitariamente, tendo mais discernimento, lucidez e confiança  para sermos  as Ialodês (Líderes) 
+                   que viemos ser. Pioneira na produção de conteúdo interativo voltado para saúde íntima sexual  no Brasil, 
+                   a Comunidade Yoni das Pretas recebe mensalmente milhares de visitas em suas páginas, site e redes sociais.
+                </p>
+                <p>
+                    O Rizoma é uma Nova Filha Projeto que nasce para potencializar e conectar  Cuidadores, interagentes e organizações. 
+                    Voltada para expansão e aprimoramento da consciência com base nas Ancestralidades, Amor e compromisso ético-político 
+                    que versam sobre inclusão e diversidade através de conteúdos, workshops online e presenciais, cursos online e presenciais, 
+                    vivências, retiros e mentorias.
+                </p>
+                <p>
+                    Como seria pra você estar vinculade a uma vitrine de profissionais para que interagentes e pessoas interessadas possam se 
+                    conectar aos seus serviços, desta vez, unides por uma plataforma em forma de rizoma , onde cada membro representa caules e 
+                    raízes da grande árvore da vida ? 
+                </p>
+                <h2>Faz sentido para você?</h2>
+                <p>
+                    Se sim, não perca tempo e junte-se a nós para compor e reforçar as raízes, caule e rizoma da árvore frondosa, fértil e 
+                    Ancestral que sustenta nós, as nossas pessoas próximas e tantas outras que se nutrem de nós !
+                </p>
+            </div>
+            <button class="btn" [ngClass]="{'expanded': expandedText}" (click)="expandedText = !expandedText">{{expandedText ? '- Ver menos' : '+ Ver mais'}}</button>
+        </div>
         <div class="bg-filter">
+            <div class="col-filter">
+                <input type="text" [(ngModel)]="selectedNome" placeholder="Nome" class="form-control">
+            </div>
             <div class="col-filter">
                 <input #searchEstado  [(ngModel)]="selectedEstado" [typeahead]="estados"  (typeaheadOnSelect)="onSelectCidade($event)"
                 typeaheadOptionField="nome" [typeaheadMinLength]="0" placeholder="Estado" class="form-control">
@@ -13,6 +51,7 @@
             </div>
             <div class="col-filter">
                 <input #searchCidade [(ngModel)]="selectedCidade" [typeahead]="cidades" 
+                [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="10"
                 typeaheadOptionField="nome" [typeaheadMinLength]="0" placeholder="Cidade" class="form-control">
                 <i *ngIf="selectedCidade == '' || selectedCidade == undefined" class='bx bx-chevron-down' (click)="searchCidade.focus()"></i>
                 <i *ngIf="selectedCidade !== '' && selectedCidade !== undefined" class='bx bx-x' (click)="selectedCidade = ''"></i>
@@ -29,6 +68,7 @@
                 <i *ngIf="selectedProfissao == '' || selectedProfissao == undefined" class='bx bx-chevron-down' (click)="searchProfissao.focus()"></i>
                 <i *ngIf="selectedProfissao !== '' && selectedProfissao !== undefined" class='bx bx-x' (click)="selectedProfissao = ''"></i>
             </div>
+            
             <div class="col-filter">
                 <button class="btn" (click)="getUsersFilters()">Filtrar</button>
             </div>
@@ -36,9 +76,10 @@
 
 
         <div class="row">
-            <ng-container *ngFor="let client of [1,2,3,4]">
-                <div class="col-lg-6" *ngIf="returnedArray.length === 0">
-                    <ngx-skeleton-loader  animation="progress"
+            <ng-container>
+                <div class="col-lg-12" *ngIf="returnedArray.length === 0">
+                    <p class="mt-4">Nenhum registro encontrado</p>
+                    <!--ngx-skeleton-loader  animation="progress"
                     [theme]="{ height: '70px', 'background-color': '#e1e1e1', 'border-radius': '15px', 'box-shadow': '0px 2px 15px 0px rgba(113, 50, 18, 0.2039215686)'}">
                     </ngx-skeleton-loader>
                     <ngx-skeleton-loader  animation="progress"
@@ -49,7 +90,7 @@
                     </ngx-skeleton-loader>
                     <ngx-skeleton-loader  animation="progress"
                     [theme]="{ height: '50px', 'background-color': '#e1e1e1', 'border-radius': '15px', 'box-shadow': '0px 2px 15px 0px rgba(113, 50, 18, 0.2039215686)', 'margin-bottom': '40px',}">
-                    </ngx-skeleton-loader>
+                    </ngx-skeleton-loader-->
                 </div>
             </ng-container>
             
@@ -66,11 +107,12 @@
                             </a>
                             <div class="wrap-texts">
                                 <a class="nav-link" routerLink="rizoma/{{client.nomeSocial | replace}}" (click)="setIdStorage(client.ID)">
-                                    <h2>{{client.nomeSocial}}</h2>
+                                    <h2>{{client.nomeSocial}}  <i *ngIf="client.profissional_verificado === 1" class='bx bxs-badge-check'></i></h2>
                                 </a>
                                 <p>{{client.profissao}}</p>
                                 <p>{{client.cidade}}, {{client.uf}} - Brasil</p>
                                 <p>{{client.email}}</p>
+                                <p>{{client.respostas.resposta1}}</p>
                                 <div class="d-flex align-items-center justify-content-start mt-2 gap-2">
                                     <p *ngIf="client.formatoAtendimento === 'p' || client.formatoAtendimento === 'po'" class="tag presencial">
                                         <i class='bx bx-user-voice'></i> 
@@ -115,10 +157,7 @@
             </pagination>
         </div>
 
-        <div class="wrap-loading" *ngIf="loading">
-            <img src="assets/icons/loading.gif">
-            <p>Carregando dados...</p>
-        </div>
+      
 
     </div>
 </section>

@@ -24,7 +24,6 @@ export class HomeDetalhesComponent {
       
     this.publicService.getUsersClientById(ID).subscribe(client => {
       this.contentArray = client;
-      console.log(client)
     });
   }
 

@@ -5,12 +5,14 @@ import { HomeComponent } from './home/home.component';
 import { HomeDetalhesComponent } from './home-detalhes/home-detalhes.component';
 import { MinhaContaComponent } from './usuarios/minha-conta/minha-conta.component';
 import { AuthGuardService } from '../auth/auth-guard.service';
+import { FormPerguntasComponent } from './form-perguntas/form-perguntas.component';
 
 const routes: Routes = [
   {
     path: '', component: PublicComponent, children: [
      { path: '', component: HomeComponent },
      { path: 'rizoma/:nome', component: HomeDetalhesComponent },
+     { path: 'cadastro', component: FormPerguntasComponent },
      { path: 'minha-conta', component: MinhaContaComponent, 
      canActivate: [AuthGuardService],
      data: {tipoUsuario: 'client'} },

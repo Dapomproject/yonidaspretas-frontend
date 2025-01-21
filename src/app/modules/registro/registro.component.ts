@@ -38,10 +38,10 @@ export class RegistroComponent implements OnInit {
     ID: [],
     usuarioID: [],
     nomeCompleto: [],
-    email: ['', [Validators.required, Validators.email]],
+    email: [''],
     senha: ['', [Validators.required, Validators.minLength(6)]],
     confirmarSenha: ['', [Validators.required, Validators.minLength(6)]],
-    recaptcha: ['', Validators.required],
+    recaptcha: [''],
     tipoUsuario: ['']
   },{ validator: ConfirmedValidator('senha', 'confirmarSenha') });
 
@@ -50,11 +50,13 @@ export class RegistroComponent implements OnInit {
     private loginService: LoginService,
     private publicService: PublicService,
     private route: ActivatedRoute,
-  
+    private toastr: ToastrService
     ) {}
 
     ngOnInit(): void {
       this.getUserClient();
+
+      //indicador de nível de senha
       zxcvbnOptions.setOptions(this.options);
       zxcvbn(this.registerForm.value.senha);
     }
@@ -93,6 +95,7 @@ export class RegistroComponent implements OnInit {
             this.loading = false;
             this.submitted = false; 
             this.registerForm.reset();
+            this.toastr.success('Senha cadastrada com sucesso! Faça login em sua conta', '');
           }
          },
          (err: any) => {
@@ -106,6 +109,7 @@ export class RegistroComponent implements OnInit {
     }
 
     atualizarSenhaUsuario() {
+     
       this.loading = true;
       this.submitted = true;
   
@@ -113,6 +117,7 @@ export class RegistroComponent implements OnInit {
         this.loginService.atualizarSenhaUsuario(this.userID, this.registerForm.value).subscribe(() => {
           this.loading = false;
           this.submitted = false;
+          this.toastr.success('Senha atualizada com sucesso! Faça login em sua conta', '');
         },
         (err) => {
           this.msgErro = err.message;

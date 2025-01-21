@@ -1,0 +1,579 @@
+<app-header></app-header>
+
+<div class="container">
+    <a class="nav-link voltar" href="https://yonidaspretas.com/"><i class='bx bx-chevron-left'></i> Voltar para o site</a>
+    <img class="logo-rizoma" src="assets/imgs/rizoma-logo.png">
+
+    <form [formGroup]="regiterClientForm" class="form-register">
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="nomeCompleto">Nome Completo <small>*</small></label>
+            <input class="form-control" type="text" name="nomeCompleto" formControlName="nomeCompleto" autocomplete="new-password" 
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.nomeCompleto.errors }" required>
+            <div *ngIf="submitted && regiterClientForm.controls.nomeCompleto.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.nomeCompleto.errors.required">Informe seu nome completo</div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="nomeSocial">Nome Social <small>*</small></label>
+            <input class="form-control" type="text" name="nomeSocial" formControlName="nomeSocial" 
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.nomeSocial.errors }" required>
+            <div *ngIf="submitted && regiterClientForm.controls.nomeSocial.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.nomeSocial.errors.required">Informe o nome social</div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="email">E-mail <small>*</small></label>
+            <input class="form-control" type="email" name="email" formControlName="email" autocomplete="new-password" 
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.email.errors }" required>
+            <div *ngIf="submitted && regiterClientForm.controls.email.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.email.errors.required">Informe seu e-mail</div>
+                <div *ngIf="regiterClientForm.controls.email.errors.email">Informe um e-mail válido</div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="celular">Telefone/Whatsapp <small>*</small></label>
+            <input class="form-control" type="text" name="celular" formControlName="celular" mask="(00) 00000-0000" autocomplete="new-password"
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.celular.errors }" required>
+            <div *ngIf="submitted && regiterClientForm.controls.celular.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.celular.errors.required">Informe seu telefone</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2">
+                Gênero <small>*</small>
+            </label>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="Mulher Cisgênero" (change)="changeResposta1($event)">
+                <label class="form-check-label" for="inlineRadio1">Mulher Cisgênero</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="Homem Cisgênero" (change)="changeResposta1($event)">
+                <label class="form-check-label" for="inlineRadio2">Homem Cisgênero</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio3" value="Homem Transgênero" (change)="changeResposta1($event)">
+                <label class="form-check-label" for="inlineRadio3">Homem Transgênero</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio4" value="Mulher Transgênero" (change)="changeResposta1($event)">
+                <label class="form-check-label" for="inlineRadio4">Mulher Transgênero</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio5" value="Não Binário" (change)="changeResposta1($event)">
+                <label class="form-check-label" for="inlineRadio5">Não Binário</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio6" value="Travesti" (change)="changeResposta1($event)">
+                <label class="form-check-label" for="inlineRadio6">Travesti</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio7" value="Outro" (change)="changeResposta1($event)">
+                <label class="form-check-label" for="inlineRadio7">Outro</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio8" value="Prefiro não responder" (change)="changeResposta1($event)">
+                <label class="form-check-label" for="inlineRadio8">Prefiro não responder</label>
+            </div>
+
+            <div *ngIf="submitted && changeRespostas.resposta1 === ''" class="invalid-message">
+                <div>Informe o gênero</div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2">
+                Faixa Etária <small>*</small>
+            </label>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio7" value="18 a 25" (change)="changeResposta2($event)">
+                <label class="form-check-label" for="inlineRadio7">18 a 25</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio8" value="26 a 35" (change)="changeResposta2($event)">
+                <label class="form-check-label" for="inlineRadio8">26 a 35</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio9" value="36 a 45" (change)="changeResposta2($event)">
+                <label class="form-check-label" for="inlineRadio9">36 a 45</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio10" value="46 a 55" (change)="changeResposta2($event)">
+                <label class="form-check-label" for="inlineRadio10">46 a 55</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio11" value="55 a 65" (change)="changeResposta2($event)">
+                <label class="form-check-label" for="inlineRadio11">55 a 65</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio12" value="66 a 75" (change)="changeResposta2($event)">
+                <label class="form-check-label" for="inlineRadio12">66 a 75</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio13" value="+75" (change)="changeResposta2($event)">
+                <label class="form-check-label" for="inlineRadio13">+75</label>
+            </div>
+
+            <div *ngIf="submitted && changeRespostas.resposta2 === ''" class="invalid-message">
+                <div>Informe a faixa etária</div>
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2">
+                Raça/Cor <small>*</small>
+            </label>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio14" value="Preta" (change)="changeResposta3($event)">
+                <label class="form-check-label" for="inlineRadio14">Preta</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio15" value="Pardo" (change)="changeResposta3($event)">
+                <label class="form-check-label" for="inlineRadio15">Pardo</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio16" value="Indigena" (change)="changeResposta3($event)">
+                <label class="form-check-label" for="inlineRadio16">Indigena</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio17" value="Branco" (change)="changeResposta3($event)">
+                <label class="form-check-label" for="inlineRadio17">Branco</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio18" value="Amarelo" (change)="changeResposta3($event)">
+                <label class="form-check-label" for="inlineRadio18">Amarelo</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio19" value="Outro" (change)="changeResposta3($event)">
+                <label class="form-check-label" for="inlineRadio19">Outro</label>
+            </div>
+
+            <div *ngIf="submitted && changeRespostas.resposta3 === ''" class="invalid-message">
+                <div>Informe a raça/cor</div>
+            </div>
+        </div>
+        <div class="row">
+        <div class="form-group mb-3 w-25">
+            <label>CEP</label>
+            <input class="form-control" type="text" name="cep" formControlName="cep" (blur)="getAddressViaCep()" mask="00000-000">
+        </div>
+        <div class="form-group mb-3 w-75">
+            <label>Rua/Av.</label>
+            <input class="form-control" type="text" name="rua" formControlName="rua">
+        </div>
+        <div class="form-group mb-3 w-25">
+            <label>Número</label>
+            <input class="form-control" type="text" name="numero" formControlName="numero">
+        </div>
+        <div class="form-group mb-3 w-50">
+            <label>Complemento</label>
+            <input class="form-control" type="text" name="complemento" formControlName="complemento">
+        </div>
+        <div class="form-group mb-3 w-25">
+            <label>Bairro</label>
+            <input class="form-control" type="text" name="bairro" formControlName="bairro">
+        </div>
+        <div class="form-group mb-3 w-50">
+            <label class="form-check-label mb-2" for="estado">Estado <small>*</small></label>
+            <input #searchEstado  formControlName="estado" [typeahead]="estados"  (typeaheadOnSelect)="onSelectCidade($event)"
+            typeaheadOptionField="nome" [typeaheadMinLength]="0" class="form-control" autocomplete="new-password"
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.estado.errors }" required>
+            <i *ngIf="regiterClientForm.controls.estado.value == ''" class='bx bx-chevron-down' (click)="searchEstado.focus()"></i>
+            <i *ngIf="regiterClientForm.controls.estado.value !== ''" class='bx bx-x' (click)="regiterClientForm.controls.estado.patchValue('')"></i>
+          
+            <div *ngIf="submitted && regiterClientForm.controls.estado.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.estado.errors.required">Informe o estado</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3 w-50">
+            <label class="form-check-label mb-2" for="cidade">Cidade <small>*</small></label>
+            <input #searchCidade formControlName="cidade" [typeahead]="cidades" 
+                [typeaheadScrollable]="true" [typeaheadOptionsInScrollableView]="10"
+                typeaheadOptionField="nome" [typeaheadMinLength]="0" class="form-control" autocomplete="new-password"
+                [ngClass]="{'invalid': submitted && regiterClientForm.controls.cidade.errors }" required>
+
+                <i *ngIf="regiterClientForm.controls.cidade.value == ''" class='bx bx-chevron-down' (click)="searchCidade.focus()"></i>
+                <i *ngIf="regiterClientForm.controls.cidade.value !== ''" class='bx bx-x' (click)="regiterClientForm.controls.cidade.patchValue('')"></i>
+
+            <div *ngIf="submitted && regiterClientForm.controls.cidade.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.cidade.errors.required">Informe a cidade</div>
+            </div>
+        </div>
+    </div>
+        <!--div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="pais">País <small>*</small></label>
+            <input class="form-control" type="text" name="pais" formControlName="pais" autocomplete="new-password" 
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.pais.errors }" required>
+            <div *ngIf="submitted && regiterClientForm.controls.pais.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.pais.errors.required">Informe o país</div>
+            </div>
+        </div-->
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2">
+                Você faz parte de algum território de maioria negra ou indígena (quilombo, favela, comunidade ribeirinha entre outras)? <small>*</small>
+            </label>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio20" value="Sim" (change)="changeResposta4($event)">
+                <label class="form-check-label" for="inlineRadio20">Sim</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio21" value="Não" (change)="changeResposta4($event)">
+                <label class="form-check-label" for="inlineRadio21">Não</label>
+            </div>
+
+            <div *ngIf="submitted && changeRespostas.resposta4 === ''" class="invalid-message">
+                <div>Informe uma resposta</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="territorio">Se sim, qual seria o território?</label>
+            <input  class="form-control" type="text" name="territorio" [(ngModel)]="changeRespostas.resposta5" [ngModelOptions]="{standalone: true}" autocomplete="new-password">
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="redesSociais">Qual o link do seu Instagram?</label>
+            <input class="form-control" type="text" name="redesSociais" formControlName="linkInstagram" autocomplete="new-password">
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="redesSociais">Qual o link do seu Facebook?</label>
+            <input class="form-control" type="text" name="redesSociais" formControlName="linkFacebook" autocomplete="new-password">
+        </div>
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="redesSociais">Qual o link do seu Linkedin?</label>
+            <input class="form-control" type="text" name="redesSociais" formControlName="linkLinkedin" autocomplete="new-password">
+        </div>
+
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="sentidoDeCuidado">Qual é o sentido de cuidado para você? <small>*</small></label>
+            <input class="form-control" type="text" name="sentidoDeCuidado" 
+            [(ngModel)]="changeRespostas.resposta6" [ngModelOptions]="{standalone: true}" autocomplete="new-password"
+            [ngClass]="{'invalid': submitted && changeRespostas.resposta6 === '' }" required>
+            <div *ngIf="submitted && changeRespostas.resposta6 === ''" class="invalid-message">
+                <div>Informe uma resposta</div>
+            </div>
+        </div>
+
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="nomeCompleto">Quando você se percebeu uma pessoa profissional do cuidado para manutenção da saúde? <small>*</small></label>
+            <input class="form-control" type="text" name="nomeCompleto" [(ngModel)]="changeRespostas.resposta7" [ngModelOptions]="{standalone: true}" autocomplete="new-password" 
+            [ngClass]="{'invalid': submitted && changeRespostas.resposta7 === '' }" required>
+            <div *ngIf="submitted && changeRespostas.resposta7 === ''" class="invalid-message">
+                <div>Informe uma resposta</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="nomeCompleto">Quais são as ciências e tecnologias de cuidado em que você atua enquanto profissional do cuidado para a manutenção da saúde? <small>*</small></label>
+            <input class="form-control" type="text" name="nomeCompleto" [(ngModel)]="changeRespostas.resposta8" [ngModelOptions]="{standalone: true}" autocomplete="new-password" 
+            [ngClass]="{'invalid': submitted && changeRespostas.resposta8 === '' }" required>
+            <div *ngIf="submitted && changeRespostas.resposta8 === ''" class="invalid-message">
+                <div>Informe uma resposta</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2">
+                Qual é o perfil de pessoas que você costuma atender? <small>*</small>
+            </label>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions5" id="inlineRadio22" value="Mulheres de todas as idades" (change)="changeResposta9($event)">
+                <label class="form-check-label" for="inlineRadio22">Mulheres de todas as idades</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions5" id="inlineRadio23" value="Mulheres jovens" (change)="changeResposta9($event)">
+                <label class="form-check-label" for="inlineRadio23">Mulheres jovens</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions5" id="inlineRadio24" value="Homens" (change)="changeResposta9($event)">
+                <label class="form-check-label" for="inlineRadio24">Homens</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions5" id="inlineRadio25" value="Pessoas que compõem o grupo  lgbtqia+" (change)="changeResposta9($event)">
+                <label class="form-check-label" for="inlineRadio25">Pessoas que compõem o grupo  lgbtqia+</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions5" id="inlineRadio26" value="Crianças" (change)="changeResposta9($event)">
+                <label class="form-check-label" for="inlineRadio26">Crianças</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions5" id="inlineRadio27" value="Idosos" (change)="changeResposta9($event)">
+                <label class="form-check-label" for="inlineRadio27">Idosos</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions5" id="inlineRadio28" value="Outros" (change)="changeResposta9($event)">
+                <label class="form-check-label" for="inlineRadio28">Outros</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions5" id="inlineRadio29" value="Sem público específico" (change)="changeResposta9($event)">
+                <label class="form-check-label" for="inlineRadio29">Sem público específico</label>
+            </div>
+
+            <div *ngIf="submitted && changeRespostas.resposta9 === ''" class="invalid-message">
+                <div>Selecione um perfil</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2">
+                Você interage através da prestação serviços para: <small>*</small>
+            </label>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions6" id="inlineRadio30" value="Pessoa Física" (change)="changeResposta10($event)">
+                <label class="form-check-label" for="inlineRadio30">Pessoa Física</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions6" id="inlineRadio31" value="Empresas Privadas" (change)="changeResposta10($event)">
+                <label class="form-check-label" for="inlineRadio31">Empresas Privadas</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions6" id="inlineRadio32" value="Instituições públicas" (change)="changeResposta10($event)">
+                <label class="form-check-label" for="inlineRadio32">Instituições públicas</label>
+            </div>
+
+            <div *ngIf="submitted && changeRespostas.resposta10 === ''" class="invalid-message">
+                <div>Selecione uma opção</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2">
+                Em qual área do cuidado você atua? <small>*</small>
+            </label>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio53" value="Acupuntura" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio53">Acupuntura</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio54" value="Aromaterapia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio54">Aromaterapia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio56" value="Arteterapia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio56">Arteterapia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio55" value="Ayurveda" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio55">Ayurveda</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio37" value="Alimentação" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio37">Alimentação</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio44" value="Consultora em Saúde Sexual" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio44">Consultora em Saúde Sexual</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio57" value="Constelação Familiar" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio57">Constelação Familiar</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio41" value="Doula" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio41">Doula</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio38" value="Fisioterapia Pélvica" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio38">Fisioterapia Pélvica</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio58" value="Fitoterapia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio58">Fitoterapia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio39" value="Ginecologia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio39">Ginecologia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio68" value="Medicina" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio68">Medicina</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio36" value="Medicinas Populares" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio36">Medicinas Populares</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio59" value="Massoterapia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio59">Massoterapia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio60" value="Meditação Guiada" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio60">Meditação Guiada</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio61" value="Musicoterapia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio61">Musicoterapia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio62" value="Naturopatia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio62">Naturopatia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio40" value="Obstetrícia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio40">Obstetrícia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio33" value="Psicanálise" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio33">Psicanálise</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio34" value="Psicologia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio34">Psicologia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio35" value="PICS - Práticas Integrativas" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio35">PICS - Práticas Integrativas</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio42" value="Parteira Tradicional" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio42">Parteira Tradicional</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio63" value="Reiki" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio63">Reiki</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio43" value="Sexóloga" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio43">Sexóloga</label>
+            </div>
+            
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio45" value="Terapia Sexual" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio45">Terapia Sexual</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio46" value="Terapia de Casal" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio46">Terapia de Casal</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio47" value="Terapia Familia" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio47">Terapia Familia</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio64" value="Terapia Holística" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio64">Terapia Holística</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio65" value="Terapia Ocupacional" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio65">Terapia Ocupacional</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio66" value="Terapia de Florais" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio66">Terapia de Florais</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions7" id="inlineRadio67" value="Yoga Terapêutica" (change)="changeResposta11($event)">
+                <label class="form-check-label" for="inlineRadio67">Yoga Terapêutica</label>
+            </div>
+            
+            <div *ngIf="submitted && changeRespostas.resposta11 === ''" class="invalid-message">
+                <div>Selecione uma opção</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label  class="form-check-label mb-2" for="formatoAtendimento">Formato Atendimento <small>*</small></label>
+            <select class="form-select" name="formatoAtendimento" formControlName="formatoAtendimento"
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.formatoAtendimento.errors }">
+                <option value=""></option>
+                <option value="p">Presencial</option>
+                <option value="o">Online</option>
+                <option value="po">Presencial / Online</option>
+            </select>
+            <div *ngIf="submitted && regiterClientForm.controls.formatoAtendimento.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.formatoAtendimento.errors.required">Informe o formato de atendimento</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="nomeCompleto">Descreva com suas palavras sua área e forma de atuação como profissional do cuidado: <small>*</small></label>
+            <input class="form-control" type="text" name="nomeCompleto" [(ngModel)]="changeRespostas.resposta12" [ngModelOptions]="{standalone: true}" autocomplete="new-password" 
+            [ngClass]="{'invalid': submitted && changeRespostas.resposta12 === '' }" required>
+            <div *ngIf="submitted && changeRespostas.resposta12 === ''" class="invalid-message">
+                <div>Informe uma resposta</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2" for="nomeCompleto">Como seria pra você  estar vinculade a uma vitrine de profissionais para 
+                que interagentes e pessoas interessadas possam se conectar aos seus serviços, desta vez, 
+                unides por uma plataforma em forma de rizoma, onde cada membro representa caules e 
+                raízes da grande árvore da vida ? Descreva com suas palavras: <small>*</small></label>
+            <input class="form-control" type="text" name="nomeCompleto" [(ngModel)]="changeRespostas.resposta13" [ngModelOptions]="{standalone: true}" autocomplete="new-password" 
+            [ngClass]="{'invalid': submitted && changeRespostas.resposta13 === '' }" required>
+            <div *ngIf="submitted && changeRespostas.resposta13 === ''" class="invalid-message">
+                <div>Informe uma resposta</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-2">
+                Como você imagina que a plataforma rizoma pode te nutrir? temos algumas sugestões, acrescente algo caso queira: <small>*</small>
+            </label>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions8" id="inlineRadio48" value="Ampliação do alcance do seu trabalho" (change)="changeResposta14($event)">
+                <label class="form-check-label" for="inlineRadio48">Ampliação do alcance do seu trabalho</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions8" id="inlineRadio49" value="Relacionamento e envolvimento com profissionais da área" (change)="changeResposta14($event)">
+                <label class="form-check-label" for="inlineRadio49">Relacionamento e envolvimento com profissionais da área</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions8" id="inlineRadio50" value="Recursos para gestão profissional/empreendedora" (change)="changeResposta14($event)">
+                <label class="form-check-label" for="inlineRadio50">Recursos para gestão profissional/empreendedora</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions8" id="inlineRadio51" value="Suporte no desenvolvimento de produtos  digitais" (change)="changeResposta14($event)">
+                <label class="form-check-label" for="inlineRadio51">Suporte no desenvolvimento de produtos  digitais</label>
+            </div>
+            <div class="form-check">
+                <input #check class="form-check-input" type="checkbox" name="inlineRadioOptions8" id="inlineRadio52" value="Outro" (change)="changeResposta14($event)">
+                <label class="form-check-label" for="inlineRadio52">Outro</label>
+            </div>
+
+            <div *ngIf="submitted && changeRespostas.resposta14 === ''" class="invalid-message">
+                <div>Informe uma resposta</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-0">
+            <label class="form-check-label mb-0">Breve descrição <small>*</small> <span> (Máx. 500 caracteres)</span></label>
+            <p>Escreva uma breve descrição sobre o seu trabalho.</p>
+            <textarea class="form-control breve" name="breveDescricao" formControlName="breveDescricao"
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.breveDescricao.errors }" required maxlength="500"></textarea>
+            <p class="count">{{regiterClientForm.controls.breveDescricao.value.length}} / 500</p>
+            <div *ngIf="submitted && regiterClientForm.controls.breveDescricao.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.breveDescricao.errors.required">Informe uma resposta</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-0">
+            <label class="form-check-label mb-0">Resumo <small>*</small> <span> (Máx. 3000 caracteres)</span></label>
+            <p>Escreva com poucas palavras o que você faz.</p>
+            <textarea class="form-control completa" name="descricaoCompleta" formControlName="descricaoCompleta"
+            [ngClass]="{'invalid': submitted && regiterClientForm.controls.descricaoCompleta.errors }" required maxlength="3000"></textarea>
+            <p class="count">{{regiterClientForm.controls.descricaoCompleta.value.length}} / 3000</p>
+            <div *ngIf="submitted && regiterClientForm.controls.descricaoCompleta.errors" class="invalid-message">
+                <div *ngIf="regiterClientForm.controls.descricaoCompleta.errors.required">Informe uma resposta</div>
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label class="form-check-label mb-0" for="file">Anexe uma foto sua <small>*</small></label>
+            <p>Subir foto com menos de 1mb no formato .jpg</p>
+            <input #check class="form-control" type="file" name="arquivo" accept="image/*" (change)="changeSelectedFile($event)"
+            [ngClass]="{'invalid': submitted && !selectedFile }" >
+            <div *ngIf="submitted && !selectedFile" class="invalid-message">
+                <div>Selecione uma imagem</div>
+            </div>
+        </div>
+       
+        <div class="container-btn mt-4">
+            <button type="submit" class="btn btn-register" (click)="submitRegisterClient()">
+               {{submitted && regiterClientForm.valid && selectedFile ? 'Enviando...' : 'Cadastrar'}}
+            </button>
+        </div>
+    </form>
+</div>
+

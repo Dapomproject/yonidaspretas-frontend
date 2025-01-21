@@ -9,6 +9,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
+  selectedNome?: string;
   selectedEstado?: string
   selectedCidade?: string;
   selectedFormato?: string;
@@ -26,8 +27,8 @@ export class HomeComponent implements OnInit{
   cidades: any = [];
   formato = Formato;
   profissao: any = [];
+  expandedText = false;
   
-
   constructor(
     private publicService: PublicService,
     ) { }
@@ -48,23 +49,21 @@ export class HomeComponent implements OnInit{
       this.contentArray = users.filter((u: any) => 
       u.nomeCompleto !== '' && u.nomeSocial !== '' 
       && u.profissao !== '' && u.formatoAtendimento !== ''
-      && u.breveDescricao !== '' && u.cidade !== '' && u.estado !== '');
+      && u.breveDescricao !== '' && u.cidade !== '' && u.estado !== ''
+      && u.status == 1);
 
       this.returnedArray = this.contentArray.slice(0, 6);
 
-      /*users.map((u: any) => {
-        if (u.profissao.length !== 0) {
-          this.profissao.push(u.profissao)
-        }
-      });*/
-      this.profissao = ['Psicanálise', 'Psicologia', 'PCS - Práticas Integrativas', 'Medicinas Populares', 'Alimentação', 'Fisioterapia Pélvica',
-    'Ginecologia', 'Obstetrícia', 'Doula', 'Parteria Tradicional', 'Sexóloga', 'Consultora em Saúde Sexual', 'Terapia Sexial', 'Terapia de Casal',
-    'Terapia Família']
+      this.profissao = ['Acupuntura', 'Aromaterapia', 'Arteterapia', 'Ayurveda', 'Alimentação', 'Consultora em Saúde Sexual',
+      'Constelação Familiar', 'Doula', 'Fisioterapia Pélvica', 'Fitoterapia', 'Ginecologia', 'Médico', 'Medicinas Populares', 'Massoterapia',
+      'Meditação Guiada', 'Musicoterapia', 'Naturopatia', 'Obstetrícia', 'Psicanálise', 'Psicologia', 'PICS - Práticas Integrativas', 
+      'Parteira Tradicional', 'Reiki', 'Sexóloga', 'Terapia Sexual', 'Terapia de Casal', 'Terapia Familia', 'Terapia Holística', 'Terapia Ocupacional'
+      , 'Terapia de Florais', 'Yoga Terapêutica']
     });
   }
 
   pageChanged(event: PageChangedEvent): void {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 950);
     const startItem = (event.page - 1) * event.itemsPerPage;
     const endItem = event.page * event.itemsPerPage;
 
@@ -73,6 +72,7 @@ export class HomeComponent implements OnInit{
 
   getUsersFilters() {
     const filters = {
+      nome: this.selectedNome,
       uf: this.selectedUF,
       cidade: this.selectedCidade,
       formatoAtendimento: this.selectedFormato,

@@ -186,9 +186,8 @@
 /*======================= RESPONSIVE =======================*/
 @media(max-width: 576px) {
     .wrap-login {
-        width: 100%;
+        width: 90% !important;
         height: 100%;
-        border-radius: 0;
 
         input,
         button {

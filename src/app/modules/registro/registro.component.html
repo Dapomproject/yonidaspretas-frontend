@@ -1,5 +1,6 @@
 <div class="content-login">
     <div class="container">
+        
         <div class="wrap-login" [ngClass]="{'expanded-height': !showLoginForm}">
 
             <form [formGroup]="registerForm" class="login-form validate-form" 
@@ -38,7 +39,7 @@
                     <p class="mb-0" *ngIf="registerForm.controls.confirmarSenha.errors.confirmedValidator">Senhas não conferem</p>
                 </div>
 
-                <ngx-recaptcha2 #captchaElem [siteKey]="siteKey"[useGlobalDomain]="false" formControlName="recaptcha"></ngx-recaptcha2>
+                <!--ngx-recaptcha2 #captchaElem [siteKey]="siteKey"[useGlobalDomain]="false" formControlName="recaptcha"></ngx-recaptcha2-->
 
                 <div class="container-btn mt-3">
                     <span *ngIf="msgErro" class="msg-erro">{{msgErro}}</span>

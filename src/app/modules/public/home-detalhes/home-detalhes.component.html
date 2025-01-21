@@ -3,9 +3,7 @@
 <section class="section-freelas">
     <div class="container">
 
-        <h1>Perfil
-            <!--a routerLink="/register/registro-freelancer/{{contentArray[0]?.ID}}" class="btn"><img src="assets/icons/edit.svg"></a-->
-        </h1>
+        <h1>Perfil</h1>
 
         <div class="row">
             <div class="col-lg-12">
@@ -17,7 +15,7 @@
                                     src="{{contentArray[0]?.avatar !== 'undefined' && contentArray[0]?.avatar !== null ? contentArray[0]?.avatar : 'assets/imgs/user-empty.svg'}}">
                             </a>
                             <div class="wrap-texts">
-                                <h2>{{contentArray[0]?.nomeSocial}}</h2>
+                                <h2>{{contentArray[0]?.nomeSocial}} <i *ngIf="contentArray[0]?.profissional_verificado === 1" class='bx bxs-badge-check'></i></h2>
                                 <p>{{contentArray[0]?.profissao}}</p>
                                 <p>Bairro: {{contentArray[0]?.bairro}}</p>
                                 <p>{{contentArray[0]?.cidade}}, {{contentArray[0]?.uf}}- Brasil</p>
@@ -50,6 +48,12 @@
                                     class='bx bxl-linkedin'></i></a>
                         </div>
                     </div>
+                </div>
+
+                <div class="card card-content">
+                    <h3>Breve descrição</h3>
+                    <p>{{contentArray[0]?.breveDescricao}}</p>
+
                 </div>
 
                 <div class="card card-content">

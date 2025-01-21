@@ -65,6 +65,12 @@ h1 {
                 font-size: 25px;
                 color: #a24337;
                 font-weight: 800;
+                i{
+                    position: relative;
+                    top: 4px;
+                    left: 5px;
+                    font-size: 28px;
+                }
             }
 
             p {
@@ -218,6 +224,7 @@ h1 {
                 .box-avatar {
                     width: 90px;
                     height: 90px;
+                    min-width: 90px;
                 }
 
                 .wrap-texts {
@@ -225,6 +232,10 @@ h1 {
 
                     p {
                         line-height: 17px;
+                        font-size: 14px;
+                    }
+                    p.tag{
+                        font-size: 10px !important;
                     }
                 }
             }
@@ -232,6 +243,15 @@ h1 {
             .flex-portifolio {
                 gap: 10px;
                 margin-top: 15px;
+                .nav-link-whats{
+                    font-size: 14px !important;
+                    width: 180px !important;
+                    height: 30px !important;
+                    margin-right: 25px !important;
+                }
+                i{
+                    font-size: 20px !important;
+                }
             }
         }
 

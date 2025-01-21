@@ -12,7 +12,8 @@ import { ModalComponent } from 'src/app/modules/shared/modal/modal.component';
 export class HeaderComponent implements OnInit {
   bsModalRef?: BsModalRef;
   scrollPosition: any;
-  hasLogged = true;
+  hasLogged = false;
+  isCollapsed = true;
 
   constructor(
     private renderer: Renderer2,

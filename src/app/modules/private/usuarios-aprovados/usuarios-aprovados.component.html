@@ -1,6 +1,5 @@
 <div class="d-flex align-items-center justify-content-between mb-3">
     <h1>Usuários aprovados</h1>
-    <button class="btn btn-export"><i class='bx bxs-file-export' ></i> Exportar dados</button>
 </div>
 
 <div class="content-usuarios">
@@ -10,6 +9,7 @@
         [actions]="true"
         [typeTable]="'aprovados'"
         (detailsBtn)="detailsGetEvent($event)"
+        (verifyBtn)="verifyGetEvent($event)"
         (deleteBtn)="deleteGetEvent($event)">
     </app-table>
 </div>

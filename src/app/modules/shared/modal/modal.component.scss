@@ -169,56 +169,9 @@ hr {
     }
 }
 
-.form-register {
-    input.form-control {
-        border: 1px solid rgba(49, 30, 32, 0.363);
-        box-shadow: none;
-        height: initial;
-
-        &:focus,
-        &:active {
-            border-color: #a24337;
-        }
-    }
-
-    .form-check {
-        .form-check-label {
-            color: rgba(49, 30, 32, 0.7529411765);
-        }
-    }
-
-    .form-check-input {
-        border-color: rgba(49, 30, 32, 0.7529411765);
-
-        &:focus,
-        &:active {
-            box-shadow: none;
-            outline: none;
-            border-color: #a24337;
-        }
-
-        &:checked {
-            background-color: #a24337;
-            border-color: #a24337;
-        }
-    }
-
-    .container-btn {
-        width: 100%;
-        display: flex;
-        justify-content: flex-end;
-
-        .btn-register {
-            background-color: #a24337;
-            height: 40px;
-            width: 130px;
-        }
-    }
-}
-
 .content-confirm {
     text-align: center;
-    padding: 30px 0;
+    padding: 30px 20px;
 
     .bx-x {
         font-size: 18px;
@@ -230,14 +183,19 @@ hr {
     }
 
     .bxs-check-circle {
-        font-size: 85px;
+        font-size: 100px;
         color: #379c59;
     }
 
     p {
-        margin-top: 10px;
-        font-size: 25px;
+        margin-top: 20px;
+        font-size: 20px;
+        line-height: 22px;
         color: rgba(49, 30, 32, 0.7529411765);
+    }
+    a.nav-link{
+        text-decoration: underline;
+        color: #a24337;
     }
 }
 
@@ -247,19 +205,28 @@ hr {
         display: flex;
         justify-content: space-between;
     }
-    .box-image {
-        width: 140px;
-        height: 150px;
-        border: 2px dashed #a24337;
-        border-radius: 15px;
-        margin-bottom: 30px;
-        cursor: pointer;
-        img {
-            height: 100%;
-            object-fit: cover;
+    .column-image{
+        .box-image {
+            width: 140px;
+            height: 150px;
+            border: 2px dashed #a24337;
             border-radius: 15px;
+            
+            cursor: pointer;
+            img {
+                height: 100%;
+                object-fit: cover;
+                border-radius: 15px;
+            }
+        }
+        p{
+            margin: 5px 0 20px;
+            font-size: 13px;
+            color: #888888;
+            text-align: center;
         }
     }
+    
     .inputs{
         width: 69%;
     }

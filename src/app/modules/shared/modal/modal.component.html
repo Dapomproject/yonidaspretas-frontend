@@ -8,26 +8,134 @@
             <ol class="list-group list-group-numbered">
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Eu acho que gostaria de usar este sistema com frequência</div>
-                        R: {{dadosRespostas[0]?.res1}}
+                        <div class="fw-bold">Nome Completo</div>
+                         {{dadosFormulario[0]?.nomeCompleto}}
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Eu acho este sistema desnecessariamente complexo</div>
-                        R: {{dadosRespostas[0]?.res2}}
+                        <div class="fw-bold">Telefone</div>
+                        {{dadosFormulario[0]?.celular | mask:"(00) 0 0000-0000"}}
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Eu achei o sistema fácil de usar</div>
-                        R: {{dadosRespostas[0]?.res3}}
+                        <div class="fw-bold">Gênero</div>
+                        {{dadosFormulario[0]?.respostas.resposta1}}
                     </div>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
-                        <div class="fw-bold">Eu acho que o sistema apresenta muitas inconsistências</div>
-                        R: {{dadosRespostas[0]?.res4}}
+                        <div class="fw-bold">Faixa Etária</div>
+                        {{dadosFormulario[0]?.respostas.resposta2}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Raça/Cor</div>
+                        {{dadosFormulario[0]?.respostas.resposta3}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Estado</div>
+                        {{dadosFormulario[0]?.estado}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Cidade</div>
+                        {{dadosFormulario[0]?.cidade}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">País</div>
+                        {{dadosFormulario[0]?.pais}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Você faz parte de algum território de maioria negra ou indígena (quilombo, favela, comunidade ribeirinha entre outras)?</div>
+                        {{dadosFormulario[0]?.respostas.resposta4}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Se sim, qual seria o território?</div>
+                        {{dadosFormulario[0]?.respostas.resposta5 ? dadosFormulario[0]?.respostas.resposta5 : 'Não informado'}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Qual o link do seu Instagram?</div>
+                        {{dadosFormulario[0]?.linkInstagram ? dadosFormulario[0]?.linkInstagram : 'Não informado'}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Qual o link do seu Facebook?</div>
+                        {{dadosFormulario[0]?.linkFacebook ? dadosFormulario[0]?.linkFacebook : 'Não informado'}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Qual o link do seu Linkedin?</div>
+                        {{dadosFormulario[0]?.linkLinkedin ? dadosFormulario[0]?.linkLinkedin : 'Não informado'}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Qual é o sentido de cuidado para você?</div>
+                        {{dadosFormulario[0]?.respostas.resposta6}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Quando você se percebeu uma pessoa profissional do cuidado para manutenção da saúde?</div>
+                        {{dadosFormulario[0]?.respostas.resposta7}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Quais são as ciências e tecnologias de cuidado em que você atua enquanto profissional do cuidado para a manutenção da saúde?</div>
+                        {{dadosFormulario[0]?.respostas.resposta8}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Qual é o perfil de pessoas que você costuma atender?</div>
+                        {{dadosFormulario[0]?.respostas.resposta9}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Você interage através da prestação serviços para:</div>
+                        {{dadosFormulario[0]?.respostas.resposta10}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Em qual área do cuidado você atua?</div>
+                        {{dadosFormulario[0]?.respostas.resposta11}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Descreva com suas palavras sua área e forma de atuação como profissional do cuidado:</div>
+                        {{dadosFormulario[0]?.respostas.resposta12}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Como seria pra você estar vinculade a uma vitrine de profissionais para que interagentes e pessoas interessadas possam se conectar aos seus serviços, desta vez, unides por uma plataforma em forma de rizoma, onde cada membro representa caules e raízes da grande árvore da vida ? Descreva com suas palavras:</div>
+                        {{dadosFormulario[0]?.respostas.resposta13}}
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="fw-bold">Como você imagina que a plataforma rizoma pode te nutrir? temos algumas sugestões, acrescente algo caso queira:</div>
+                        {{dadosFormulario[0]?.respostas.resposta14}}
                     </div>
                 </li>
             </ol>
@@ -38,7 +146,7 @@
 
             <div class="d-flex align-items-center justify-content-center mt-4 mb-2">
                 <button class="btn btn-nao" (click)="closeModal()">Não</button>
-                <button class="btn btn-sim">Sim</button>
+                <button class="btn btn-sim" (click)="delete()">Sim</button>
             </div>
         </ng-container>
 
@@ -46,8 +154,8 @@
             <div class="header-perfil">
                 <i class='bx bx-x' (click)="closeModal()"></i>
                 <img class="avatar rounded-circle" 
-                src="{{data.dadosPerfil.avatar !== 'undefined' ? data.dadosPerfil.avatar : 'assets/imgs/user-empty.svg'}}">
-                <p class="title">{{data.dadosPerfil.nomeSocial}}</p>
+                src="{{data.dadosPerfil.avatar && data.dadosPerfil.avatar !== 'undefined' ? data.dadosPerfil.avatar : 'assets/imgs/user-empty.svg'}}">
+                <p class="title">{{data.nomeSocial}}</p>
                 <p>{{data.dadosPerfil.email}}</p>
                 <p>{{data.dadosPerfil.endereco}}</p>
                 <p>{{data.dadosPerfil.profissao}}</p>
@@ -73,99 +181,11 @@
                         <li *ngFor="let s of data.dadosPerfil.produtosServicos" class="list-group-item">
                             <p>{{s.titulo}}</p>
                             <p>{{s.descricao}}</p>
-                            <p class="price">{{s.preco | currency: 'BRL'}}</p>
+                            <p class="price">{{s.valor | currency: 'BRL'}}</p>
                         </li>
                     </ul>
                 </div>
             </div>
-        </ng-container>
-
-        <ng-container *ngIf="data.modalType === 'REGISTER_CLIENT'">
-            <form [formGroup]="regiterClientForm" class="form-register">
-                <div class="form-group mb-3">
-                    <label class="form-check-label mb-2">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard.
-                    </label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio1" value="option1" (change)="changeRes1($event)">
-                        <label class="form-check-label" for="inlineRadio1">Opção 1</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio2" value="option2" (change)="changeRes1($event)">
-                        <label class="form-check-label" for="inlineRadio2">Opção 2</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions1" id="inlineRadio3" value="option3" (change)="changeRes1($event)">
-                        <label class="form-check-label" for="inlineRadio3">Opção 3</label>
-                    </div>
-                </div>
-                <div class="form-group mb-3">
-                    <label class="form-check-label mb-2">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard.
-                    </label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio4" value="option4" (change)="changeRes2($event)">
-                        <label class="form-check-label" for="inlineRadio4">Opção 4</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio5" value="option5" (change)="changeRes2($event)">
-                        <label class="form-check-label" for="inlineRadio5">Opção 5</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="inlineRadio6" value="option6" (change)="changeRes2($event)">
-                        <label class="form-check-label" for="inlineRadio6">Opção 6</label>
-                    </div>
-                </div>
-                <div class="form-group mb-3">
-                    <label class="form-check-label mb-2">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard.
-                    </label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio7" value="option7" (change)="changeRes3($event)">
-                        <label class="form-check-label" for="inlineRadio7">Opção 7</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio8" value="option8" (change)="changeRes3($event)">
-                        <label class="form-check-label" for="inlineRadio8">Opção 8</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions3" id="inlineRadio9" value="option9" (change)="changeRes3($event)">
-                        <label class="form-check-label" for="inlineRadio9">Opção 9</label>
-                    </div>
-                </div>
-                <div class="form-group mb-3">
-                    <label class="form-check-label mb-2">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard.
-                    </label>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio10" value="option10" (change)="changeRes4($event)">
-                        <label class="form-check-label" for="inlineRadio10">Opção 10</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio11" value="option11" (change)="changeRes4($event)">
-                        <label class="form-check-label" for="inlineRadio11">Opção 11</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="inlineRadioOptions4" id="inlineRadio12" value="option12" (change)="changeRes4($event)">
-                        <label class="form-check-label" for="inlineRadio12">Opção 12</label>
-                    </div>
-                </div>
-                <div class="form-group mb-3">
-                    <label class="form-check-label mb-2" for="file">Anexo</label>
-                    <input class="form-control" type="file" name="arquivo" accept="application/pdf" (change)="changeSelectedFile($event)" required>
-                </div>
-               
-                <div class="form-group mb-3">
-                    <label class="form-check-label mb-2" for="email">E-mail</label>
-                    <input class="form-control" type="email" name="email" formControlName="email" autocomplete="off" required>
-                </div>
-
-                <div class="container-btn mt-4">
-                    <button type="submit" class="btn btn-register" (click)="submitRegisterClient()">
-                        Cadastrar
-                    </button>
-                </div>
-            </form>
         </ng-container>
 
         <ng-container *ngIf="data.modalType === 'CONFIRMATION'">
@@ -173,19 +193,28 @@
             <div class="content-confirm">
                 <i class='bx bx-x' (click)="closeModal()"></i>
                 <i class='bx bxs-check-circle'></i>
-                <p>Seu cadastro foi enviado e está em avaliação</p>
+                <p>Seu cadastro foi enviado e será avaliado pela nossa equipe em um prazo de até 2 dias úteis. </p>
+                <p>Nós acabamos de te enviar um e-mail de confirmação desta solicitação e te enviaremos um 
+                    novo e-mail assim que concluirmos a análise dos seus dados. </p>
+                   <p> Verifique e acompanhe a sua caixa de entrada para mais informações.
+                </p>
+                <a class="nav-link" href="https://yonidaspretas.com">Voltar para o site</a>
             </div>
         </ng-container>
 
-        <ng-container *ngIf="data.modalType === 'CADASTRO_SERVICOS'">
+        <ng-container *ngIf="data.modalType === 'CADASTRO_SERVICOS' || data.modalType === 'EDITAR_SERVICO'">
             <div class="content-register-service">
                 <div class="flex-items">
-                    <div class="box-image" (click)="fileUploader.click()">
-                        <img class="img-upload" [src]="highlightedImage" width="100%"
-                            alt="imagem-destacada">
-                        <input type="file" #fileUploader accept="image/*" class="form-control" id="avatar"
-                            aria-describedby="nome" placeholder="imagem" (change)="showPreviewImage($event)"hidden>
+                    <div class="column-image">
+                        <div class="box-image" (click)="fileUploader.click()">
+                            <img class="img-upload" [src]="highlightedImage" width="100%"
+                                alt="imagem-destacada">
+                            <input type="file" #fileUploader accept="image/*" class="form-control" id="avatar"
+                                aria-describedby="nome" placeholder="imagem" (change)="showPreviewImage($event)"hidden>
+                        </div>
+                        <p>Tamanho máximo: 1MB</p>
                     </div>
+                   
                     
                     <div class="inputs">
                         <div class="form-group mb-2">
@@ -205,7 +234,9 @@
                     <textarea class="form-control" name="descricao" [(ngModel)]="servicosCliente.descricao"></textarea>
                 </div>
                
-                <button type="button" class="btn btn-add-service" (click)="addService()">Adicionar</button>
+                <button type="button" class="btn btn-add-service" (click)="data.modalType === 'CADASTRO_SERVICOS' ? addService() :  editService()">
+                    {{data.modalType === 'CADASTRO_SERVICOS' ? 'Adicionar' : 'Atualizar'}}
+                </button>
             </div>
            
         </ng-container>

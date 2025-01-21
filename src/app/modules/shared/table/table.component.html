@@ -1,6 +1,11 @@
+
+<div *ngIf="typeTable !== 'cadastrados'" class="wrap-button-export">
+    <button class="btn btn-export" (click)="exportAsCSV()"><i class='bx bxs-file-export' ></i> Exportar dados</button>
+</div>
+
 <div class="card">
     <div class="table-responsive">
-        <table class="table">
+        <table #table class="table">
             <thead>
                 <tr>
                     <th *ngFor="let key of colData">{{ key.header }}</th>
@@ -11,21 +16,21 @@
                 <tr *ngFor="let record of gridData; let i = index">
                     <td *ngFor="let key of colData">
                         <img *ngIf="key.field === 'nomeSocial'" class="avatar rounded-circle" 
-                        src="{{record.avatar !== 'undefined'? record.avatar : 'assets/imgs/user-empty.svg'}}">
-                        <span>{{ record[key.field]}}</span>
+                        src="{{record.avatar && record.avatar !== 'undefined'? record.avatar : 'assets/imgs/user-empty.svg'}}">
+                        <span>{{ record[key.field] }}</span>
                     </td>
                     <td *ngIf="actions && typeTable === 'cadastrados'">
-                        <i class='bx bx-windows' tooltip="Ver respostas" placement="top" delay="300"  (click)="detailsBtnRespostas($event, i, record)"></i>
-                        <i class='bx bx-paperclip bx-rotate-270' tooltip="Baixar anexo" placement="top" delay="300" (click)="downloadFileBtn(record)"></i>
-                        <i class='bx bx-user-check' tooltip="Aprovar" placement="top" delay="300" (click)="updateBtnEvent($event, i, record, 1)"></i>
-                        <i class='bx bx-user-x' tooltip="Reprovar" placement="top" delay="300" (click)="updateBtnEvent($event, i, record, 2)"></i>
+                        <i class='bx bx-windows' tooltip="Ver respostas"  (click)="detailsBtnRespostas($event, i, record)"></i>
+                        <i class='bx bx-user-check' tooltip="Aprovar" (click)="updateBtnEvent($event, i, record, 1)"></i>
+                        <i class='bx bx-user-x' tooltip="Reprovar" (click)="updateBtnEvent($event, i, record, 2)"></i>
                     </td>
                     <td *ngIf="actions && typeTable === 'aprovados'">
-                        <i class='bx bx-user-pin' tooltip="Ver perfil" placement="top" delay="300" (click)="detailsBtnEvent($event, i, record)"></i>
-                        <i class='bx bx-trash'  tooltip="Excluir" placement="top" delay="300" (click)="deleteBtnEvent($event, i, record)"></i>
+                        <i class='bx bx-user-pin' tooltip="Ver perfil" (click)="detailsBtnEvent($event, i, record)"></i>
+                        <i class='bx' [ngClass]="record.profissional_verificado === 1 ? 'bxs-badge-check' : 'bx-badge-check'"  tooltip="Profissional Verificado" (click)="verifyEvent($event, i, record)"></i>
+                        <i class='bx bx-trash'  tooltip="Excluir" (click)="deleteBtnEvent($event, i, record)"></i>
                     </td>
                     <td *ngIf="actions && typeTable === 'reprovados'">
-                        <i class='bx bx-trash'  tooltip="Excluir" placement="top" delay="300" (click)="deleteBtnEvent($event, i, record)"></i>
+                        <i class='bx bx-trash'  tooltip="Excluir" (click)="deleteBtnEvent($event, i, record)"></i>
                     </td>
                     
                 </tr>

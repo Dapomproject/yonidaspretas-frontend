@@ -11,7 +11,7 @@
                 </li>
                 <ng-container *ngIf="!hasLogged">
                     <li class="list-group-item">
-                        <a class="nav-link" href="javascript:void(0);" (click)="openDialogRegisterClient()">Criar conta</a>
+                        <a class="nav-link" routerLink="/cadastro">Cadastre-se</a>
                     </li>
                     <li class="list-group-item">
                         <a class="nav-link" routerLink="/login">Entrar</a>
@@ -48,6 +48,36 @@
                     </li>
                 </ul>
             </div>
+        </div>
+
+        <button type="button" class="btn btn-collapse-mobile" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+            <i class='bx bx-menu'></i>
+        </button>
+
+        <div class="mobile-menu" [collapse]="isCollapsed">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a class="nav-link" routerLink="/" (click)="isCollapsed = !isCollapsed">Inicio</a>
+                </li>
+                <ng-container *ngIf="!hasLogged; else logged">
+                    <li class="list-group-item">
+                        <a class="nav-link" routerLink="/cadastro">Cadastre-se</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="nav-link" routerLink="/login">Entrar</a>
+                    </li>
+                </ng-container>
+                <ng-template #logged>
+                    <li class="list-group-item">
+                        <a class="nav-link" routerLink="/minha-conta">Minha Conta</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="javascript:void(0);" class="nav-link" (click)="logout();">Sair</a>
+                    </li>
+                </ng-template>
+              
+            </ul>
         </div>
     </div>
 </nav>

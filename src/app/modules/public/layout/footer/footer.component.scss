@@ -11,6 +11,9 @@
         }
         p{
             color: #585858;
+            .nav-link{
+                text-decoration: underline;
+            }
         }
         .nav{
             justify-content: flex-end;
@@ -33,4 +36,9 @@
     color: #585858;
     font-size: 14px;
     font-weight: 300;
+}
+
+/* ============= MOBILE =================*/
+@media (max-width: 768px) {
+
 }

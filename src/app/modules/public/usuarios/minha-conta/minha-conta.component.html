@@ -6,34 +6,52 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="label-form">
-                        <span>Dados gerais</span>
+                        <span class="title-label">Dados gerais</span>
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="avatar" (click)="fileUploader.click()">
                                     <img class="img-upload" [src]="highlightedImage" width="100%" height="200px"
                                         alt="imagem-destacada">
                                     <input type="file" #fileUploader accept="image/*" class="form-control" id="avatar"
-                                        aria-describedby="nome" placeholder="imagem" (change)="showPreviewImage($event)"
-                                        hidden>
-
+                                     aria-describedby="nome" placeholder="imagem" (change)="showPreviewImage($event)" hidden>
                                 </div>
+                                <p class="info">Tamanho máximo: 1MB</p>
                             </div>
                             <div class="col-lg-9">
                                 <div class="form-group mb-2">
-                                    <label>Nome Completo</label>
+                                    <label>Nome Completo <small>*</small></label>
                                     <input class="form-control" type="text" name="nomeCompleto" formControlName="nomeCompleto">
-                                </div>
-                                <div class="form-group mb-2 w-75">
-                                    <label>Nome Social</label>
-                                    <input class="form-control" type="text" name="nomeSocial" formControlName="nomeSocial">
                                 </div>
                                 <div class="row">
                                     <div class="form-group mb-2 w-50">
-                                        <label>Profissão</label>
-                                        <input class="form-control" type="text" name="profissao" formControlName="profissao">
+                                        <label>Nome Social <small>*</small></label>
+                                        <input class="form-control" type="text" name="nomeSocial" formControlName="nomeSocial">
                                     </div>
                                     <div class="form-group mb-2 w-50">
-                                        <label>Formato Atendimento</label>
+                                        <label>Gênero <small>*</small></label>
+                                        <select class="form-select" name="genero" formControlName="genero">
+                                            <option value=""></option>
+                                            <option value="Mulher Cisgênero">Mulher Cisgênero</option>
+                                            <option value="Homem Cisgênero">Homem Cisgênero</option>
+                                            <option value="Homem Transgênero">Homem Transgênero</option>
+                                            <option value="Mulher Transgênica">Mulher Transgênica</option>
+                                            <option value="Não Binário">Não Binário</option>
+                                            <option value="Prefiro não responder">Prefiro não responder</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group mb-2 w-50">
+                                        <label>Profissão <small>*</small></label>
+                                        <div class="custom-select-profissao">
+                                            <ng-select #select [items]="profissao" bindLabel="apelidoProfissional" [multiple]="true"
+                                            formControlName="profissao">
+                                            </ng-select>
+                                            <i class="bx bx-chevron-down" (click)="select.open()"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-2 w-50">
+                                        <label>Formato Atendimento <small>*</small></label>
                                         <select class="form-select" name="formatoAtendimento" formControlName="formatoAtendimento">
                                             <option value=""></option>
                                             <option value="p">Presencial</option>
@@ -42,26 +60,25 @@
                                         </select>
                                     </div>
                                     <div class="form-group mb-2 w-75">
-                                        <label>E-mail</label>
+                                        <label>E-mail <small>*</small></label>
                                         <input class="form-control" type="text" name="email" formControlName="email">
                                     </div>
                                     <div class="form-group mb-2 w-25">
                                         <label>Whatsapp</label>
                                         <input class="form-control" type="text" name="celular" formControlName="celular" mask="(00) 0 0000-0000">
                                     </div>
-                                    <div class="form-group mb-2 w-50">
-                                        <label>Anexo</label>
-                                        <input class="form-control" type="file" name="nomeCompleto">
-                                    </div>
+                                   
                                 </div>
 
                                 <div class="form-group mb-2">
-                                    <label>Breve descrição</label>
-                                    <textarea class="form-control breve" name="breveDescricao" formControlName="breveDescricao"></textarea>
+                                    <label>Breve descrição <small>*</small> <span> (Máx. 500 caracteres)</span></label>
+                                    <textarea class="form-control breve" name="breveDescricao" formControlName="breveDescricao" maxlength="500"></textarea>
+                                    <p>{{updateClientForm.controls.breveDescricao.value.length}} / 500</p>
                                 </div>
                                 <div class="form-group mb-2">
-                                    <label>Descrição completa</label>
-                                    <textarea class="form-control completa" name="descricaoCompleta" formControlName="descricaoCompleta"></textarea>
+                                    <label>Resumo <small>*</small> <span> (Máx. 3000 caracteres)</span></label>
+                                    <textarea class="form-control completa" name="descricaoCompleta" formControlName="descricaoCompleta" maxlength="3000"></textarea>
+                                    <p>{{updateClientForm.controls.descricaoCompleta.value.length}} / 3000</p>
                                 </div>
                             </div>
                         </div>
@@ -85,6 +102,7 @@
                                     </div>
                                   </div>
                                   <div class="acoes">
+                                    <i class='bx bx-edit' (click)="editarSevico(i)"></i>
                                     <i class='bx bx-trash' (click)="removerSevico(i)"></i>
                                   </div>
                                 </div>
@@ -126,7 +144,7 @@
                         <div class="row">
                             <div class="form-group mb-2 w-25">
                                 <label>CEP</label>
-                                <input class="form-control" type="text" name="cep" formControlName="cep" mask="00000-000">
+                                <input class="form-control" type="text" name="cep" formControlName="cep" (blur)="getAddressViaCep()" mask="00000-000">
                             </div>
                             <div class="form-group mb-2 w-75">
                                 <label>Rua/Av.</label>
@@ -145,16 +163,16 @@
                                 <input class="form-control" type="text" name="bairro" formControlName="bairro">
                             </div>
                             <div class="form-group mb-2 w-50">
-                                <label>Estado</label>
+                                <label>Estado <small>*</small></label>
                                 <select class="form-select" formControlName="estado" (change)="onSelectCidade($event)">
                                     <option value=""></option>
-                                    <option *ngFor="let e of estados" [ngValue]="[e.nome, e.sigla]" [selected]="updateClientForm.controls.estado.value[0] == e.nome">
+                                    <option *ngFor="let e of estados" [ngValue]="[e.nome, e.sigla]" [selected]="updateClientForm.controls.estado.value == e.nome">
                                         {{e.nome}}
                                     </option>
                                 </select>
                             </div>
                             <div class="form-group mb-2 w-50">
-                                <label>Cidade</label>
+                                <label>Cidade <small>*</small></label>
                                 <select class="form-select" formControlName="cidade">
                                     <option value=""></option>
                                     <option *ngFor="let c of cidades"  [value]="c.nome" [selected]="updateClientForm.controls.cidade.value == c.nome">{{c.nome}}</option>
@@ -167,12 +185,15 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-salvar">Salvar</button>
+                    <button type="submit" class="btn btn-salvar">
+                        <i *ngIf="loading" class='bx bx-refresh bx-spin' ></i>
+                        {{loading ? 'Salvando' : 'Salvar'}}
+                    </button>
                 </div>
 
             </div><!-- /row -->
 
         </form>
-
+        <p>Estamos prontes para ajudar. Têm dúvidas ou encontrou algum erro? Preecha o formulário https://yonidaspretas.com/suporte/ ou envie um e-mail para suporte@dapom.com.br."</p>
     </div>
 </section>

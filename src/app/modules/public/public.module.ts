@@ -15,6 +15,8 @@ import { MinhaContaComponent } from './usuarios/minha-conta/minha-conta.componen
 import { TooltipDirective } from '../utils/tooltip.directive';
 import { NgxMaskDirective, NgxMaskPipe, provideEnvironmentNgxMask, provideNgxMask } from 'ngx-mask';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { FormPerguntasComponent } from './form-perguntas/form-perguntas.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     ReplacePipe,
     MinhaContaComponent,
     TooltipDirective,
+    FormPerguntasComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
     NgxBootstrapModule,
     NgxMaskDirective, 
     NgxMaskPipe,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    NgSelectModule,
   ],
   exports: [
     HeaderComponent,
