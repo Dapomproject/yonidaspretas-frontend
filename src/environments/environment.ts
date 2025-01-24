@@ -2,7 +2,7 @@ export const environment = {
     production: false,
     API_IBGE: 'https://servicodados.ibge.gov.br/api/v1/localidades/estados',
     API_URL: 'https://api.yonidaspretas.com',
-    //API_URL: 'http://localhost:3001',
+    //API_URL: 'http://localhost:2053',
     USER_TYPE: {
       CLIENTE: 'client',
       ADM: 'adm'

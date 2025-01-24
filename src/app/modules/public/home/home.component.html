@@ -109,7 +109,7 @@
                                 <a class="nav-link" routerLink="rizoma/{{client.nomeSocial | replace}}" (click)="setIdStorage(client.ID)">
                                     <h2>{{client.nomeSocial}}  <i *ngIf="client.profissional_verificado === 1" class='bx bxs-badge-check'></i></h2>
                                 </a>
-                                <p>{{client.profissao}}</p>
+                                <p>{{(client.profissao | slice:0:1) + ' ...'}}</p>
                                 <p>{{client.cidade}}, {{client.uf}} - Brasil</p>
                                 <p>{{client.email}}</p>
                                 <p>{{client.respostas.resposta1}}</p>
