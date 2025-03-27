@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit{
       this.returnedArray = this.contentArray.slice(0, 6);
 
       this.profissao = ['Acupuntura', 'Aromaterapia', 'Arteterapia', 'Ayurveda', 'Alimentação', 'Consultora em Saúde Sexual',
-      'Constelação Familiar', 'Doula', 'Fisioterapia Pélvica', 'Fitoterapia', 'Ginecologia', 'Médico', 'Medicinas Populares', 'Massoterapia',
+      'Constelação Familiar', 'Doula', 'Fisioterapia Pélvica', 'Fitoterapia', 'Ginecologia', 'Medicina', 'Medicinas Populares', 'Massoterapia',
       'Meditação Guiada', 'Musicoterapia', 'Naturopatia', 'Obstetrícia', 'Psicanálise', 'Psicologia', 'PICS - Práticas Integrativas', 
       'Parteira Tradicional', 'Reiki', 'Sexóloga', 'Terapia Sexual', 'Terapia de Casal', 'Terapia Familia', 'Terapia Holística', 'Terapia Ocupacional'
       , 'Terapia de Florais', 'Yoga Terapêutica']
