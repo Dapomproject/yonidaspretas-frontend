@@ -7,22 +7,24 @@ import { MinhaContaComponent } from './usuarios/minha-conta/minha-conta.componen
 import { AuthGuardService } from '../auth/auth-guard.service';
 import { FormPerguntasComponent } from './form-perguntas/form-perguntas.component';
 
+// Definindo as rotas para o módulo Public
 const routes: Routes = [
   {
     path: '', component: PublicComponent, children: [
-     { path: '', component: HomeComponent },
-     { path: 'rizoma/:nome', component: HomeDetalhesComponent },
-     { path: 'cadastro', component: FormPerguntasComponent },
-     { path: 'minha-conta', component: MinhaContaComponent, 
-     canActivate: [AuthGuardService],
-     data: {tipoUsuario: 'client'} },
-     { path: '', pathMatch: 'full', redirectTo: '' },
+     { path: '', component: HomeComponent },  // Rota para a página inicial do site (Home)
+     { path: 'rizoma/:nome', component: HomeDetalhesComponent }, // Rota para a página de detalhes com um parâmetro 'nome' (HomeDetalhesComponent)
+     { path: 'cadastro', component: FormPerguntasComponent }, // Rota para o formulário de cadastro
+     { path: 'minha-conta', component: MinhaContaComponent,    // Rota para a área "Minha Conta", com proteção de guarda (AuthGuardService)
+      canActivate: [AuthGuardService], // Protege a rota com o guard
+      data: {tipoUsuario: 'client'} // Dados adicionais para o guard 
+     },
+     { path: '', pathMatch: 'full', redirectTo: '' }, // Redirecionamento para a rota inicial (Home)
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)], // Importando o RouterModule para configurar as rotas
+  exports: [RouterModule] // Exportando o RouterModule para ser utilizado em outros módulos
 })
 export class PublicRoutingModule { }
