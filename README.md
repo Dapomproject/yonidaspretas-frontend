@@ -44,6 +44,30 @@ O projeto consiste em uma vitrine de profissionais para que interagentes e pesso
 #### Tela principal
 ![Tela Principal](./src/assets/imgs/github/tela-principal.png)
 
+#### Detalhes do profissional
+![Detalhes do profissional](./src/assets/imgs/github/detalhes-profissional.png)
+
+#### Cadastro do profissional
+![Cadastro do profissional](./src/assets/imgs/github/cadastro-profissional.png)
+
+#### Painel administrativo
+![Painel administrativo](./src/assets/imgs/github/painel-administrativo.png)
+
+#### Usuarios cadastrados
+![Usuarios cadastrados](./src/assets/imgs/github/usuarios-cadastrados.png)
+
+#### Usuarios aprovados
+![Usuarios aprovados](./src/assets/imgs/github/usuarios-aprovados.png)
+
+#### Usuarios reprovados
+![Tela Principal](./src/assets/imgs/github/usuarios-reprovados.png)
+
+#### Perfil de aprovados
+![Perfil de aprovados](./src/assets/imgs/github/perfil-aprovados.png)
+
+#### Respostas do formulario de cadastro
+![Resposta do formulario de cadastro](./src/assets/imgs/github/respostas-formulario.png)
+
 ## ✨ Funcionalidades
 * Autenticação de usuários (cadastro/login)
 * Envio e recebimento de e-mails (cadastro/login/esqueci a senha, aprovação, rejeição)
@@ -51,6 +75,7 @@ O projeto consiste em uma vitrine de profissionais para que interagentes e pesso
 * Filtragem por nome, estado, cidade, formato e profissão
 * Painel administrativo
 * Aprovação ou rejeição de perfis
+* Opção para exportação de perfis
 
 
 ## 📄 Licença
