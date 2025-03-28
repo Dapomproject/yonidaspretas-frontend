@@ -38,6 +38,8 @@ O projeto consiste em uma vitrine de profissionais para que interagentes e pesso
 #### Login
 ![Login](./src/assets/imgs/github/login.png)
 
+##
+
 #### Recuperação de senha
 ![Recuperação de senha](./src/assets/imgs/github/recuperacao-senha.png)
 
