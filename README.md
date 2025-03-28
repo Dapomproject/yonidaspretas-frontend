@@ -33,8 +33,11 @@ O projeto consiste em uma vitrine de profissionais para que interagentes e pesso
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## 📸 Capturas de Tela
-### Login
+#### Login
 ![Tela Principal](./src/assets/imgs/github/login.png)
+
+#### Recuperação de senha
+![Tela Principal](./src/assets/imgs/github/recuperacao-senha.png)
 
 ## ✨ Funcionalidades
 * Autenticação de usuários (cadastro/login)
