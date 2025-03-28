@@ -34,7 +34,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## 📸 Capturas de Tela
 Tela Principal da aplicação
-![Tela Principal](assets/imgs/github/tela-principal.png)
+![Tela Principal](./src/assets/imgs/github/tela-principal.png)
 
 ## ✨ Funcionalidades
 * Autenticação de usuários (cadastro/login)
