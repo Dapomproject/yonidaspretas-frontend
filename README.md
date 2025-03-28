@@ -25,19 +25,24 @@ O projeto consiste em uma vitrine de profissionais para que interagentes e pesso
     ```sh
     ng serve
 
+5. Url de navegação:
+    ```sh
+    http://localhost:4200/
+
 ## 🔧 Configuração do Ambiente
 * Certifique-se que você tem o Angular CLI instalado (recomenda-se a versão 16+)(https://v16.angular.io/guide/setup-local)    
 * Certifique-se de que você tem o Node.js instalado (recomenda-se a versão 16+) (https://nodejs.org/pt).
 * Defina variáveis de ambiente no arquivo .environment, se aplicável.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
 ## 📸 Capturas de Tela
 #### Login
-![Tela Principal](./src/assets/imgs/github/login.png)
+![Login](./src/assets/imgs/github/login.png)
 
 #### Recuperação de senha
-![Tela Principal](./src/assets/imgs/github/recuperacao-senha.png)
+![Recuperação de senha](./src/assets/imgs/github/recuperacao-senha.png)
+
+#### Tela principal
+![Tela Principal](./src/assets/imgs/github/tela-principal.png)
 
 ## ✨ Funcionalidades
 * Autenticação de usuários (cadastro/login)
