@@ -99,6 +99,57 @@ O projeto consiste em uma vitrine de profissionais para que interagentes e pesso
 * Aprovação ou rejeição de perfis
 * Opção para exportação de perfis
 
+## 🛠️ Estrutura do Projeto
+ ```sh
+├── dist                                  # Pasta onde o Angular gera os arquivos finais após o build
+├── src                                   # Código-fonte do projeto
+│   ├── app                               # Diretório principal da aplicação
+│   │   └── modules                       # Módulos da aplicação
+│   │       ├── auth                      # Módulo de autenticação (login, logout, etc.)
+│   │       ├── esqueci-senha             # Módulo para recuperação de senha
+│   │       │   └── services              # Serviços relacionados à recuperação de senha
+│   │       ├── login                     # Módulo de login
+│   │       │   └── services              # Serviços relacionados ao login
+│   │       ├── private                   # Módulo para usuários autenticados (área restrita)
+│   │       │   ├── admin                 # Área administrativa
+│   │       │   ├── layout                # Componentes de layout da área privada
+│   │       │   │   ├── header            # Cabeçalho da área privada
+│   │       │   │   └── sidebar           # Menu lateral da área privada
+│   │       │   ├── services              # Serviços exclusivos da área privada
+│   │       │   ├── usuarios-aprovados    # Tela/lista de usuários aprovados
+│   │       │   ├── usuarios-cadastrados  # Tela/lista de usuários cadastrados
+│   │       │   └── usuarios-reprovados   # Tela/lista de usuários reprovados
+│   │       ├── public                    # Módulo público (acessível sem login)
+│   │       │   ├── form-perguntas        # Página de perguntas (formulário)
+│   │       │   ├── home                  # Página inicial
+│   │       │   ├── home-detalhes         # Detalhes de um item na home
+│   │       │   ├── layout                # Componentes de layout da área pública
+│   │       │   │   ├── footer            # Rodapé do site
+│   │       │   │   └── header            # Cabeçalho da área pública
+│   │       │   ├── services              # Serviços da área pública
+│   │       │   └── usuarios              # Gerenciamento de usuários na área pública
+│   │       │       └── minha-conta       # Página "Minha Conta" do usuário
+│   │       ├── registro                  # Módulo de registro de novos usuários
+│   │       ├── shared                    # Componentes reutilizáveis
+│   │       │   ├── modal                 # Componente de modal genérico
+│   │       │   └── table                 # Componente de tabela genérica
+│   │       └── utils                     # Funções/utilitários reutilizáveis
+│   ├── assets                            # Recursos estáticos do projeto (imagens, fontes, ícones)
+│   │   ├── boxicons-2.1.4                # Ícones utilizados no projeto        
+│   │   └── imgs                          # Imagens utilizadas no projeto
+│   ├── environments                      # Configurações de ambiente (produção, desenvolvimento)
+│   ├── favicon.ico                       # Ícone da aba do navegador
+│   ├── index.html                        # Página HTML principal do projeto
+│   ├── main.ts                           # Arquivo principal que inicia a aplicação Angular
+│   └── styles.scss                       # Estilos globais do projeto
+├── angular.json                          # Configuração do Angular CLI (builds, assets, etc.)
+├── package-lock.json                     # Controle das versões exatas das dependências instaladas
+├── package.json                          # Lista de dependências do projeto e scripts do npm
+├── README.md                             # Documentação do projeto
+├── tsconfig.app.json                     # Configuração TypeScript específica para a aplicação Angular
+├── tsconfig.json                         # Configuração principal do TypeScript
+└── tsconfig.spec.json                    # Configuração TypeScript para testes unitários
+
 
 ## 📄 Licença
 
